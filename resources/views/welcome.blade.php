@@ -117,6 +117,98 @@
                     </div>
                 </div>
             </section>
+
+            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+                <div class="max-w-2xl">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">The Problem</p>
+                    <h2 class="mt-3 text-3xl font-black text-white">Productivity usually feels scattered.</h2>
+                </div>
+                <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+                    @foreach ([
+                        'Tasks are scattered everywhere.',
+                        'Deadlines are often missed.',
+                        'To-do lists feel boring.',
+                        'Progress is hard to measure.',
+                        'Motivation is often low.',
+                    ] as $problem)
+                        <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-5 shadow-xl shadow-purple-950/10">
+                            <p class="text-sm font-semibold leading-6 text-slate-300">{{ $problem }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+                <div class="grid gap-8 rounded-lg border border-purple-300/20 bg-purple-950/40 p-6 shadow-2xl shadow-purple-950/30 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">The Solution</p>
+                        <h2 class="mt-3 text-3xl font-black text-white">QuestBoard turns work into a rewarding loop.</h2>
+                        <p class="mt-4 text-sm leading-7 text-slate-300">
+                            Organize activities into quests, group them by category, track deadlines, gain EXP after completion, and level up through consistent progress.
+                        </p>
+                    </div>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        @foreach ([
+                            'Organize activities into quests.',
+                            'Group quests by category.',
+                            'Track progress and deadlines.',
+                            'Gain EXP after completing quests.',
+                            'Level up through productivity.',
+                        ] as $solution)
+                            <div class="rounded-md border border-white/10 bg-[#0F172A]/80 p-4 text-sm font-semibold text-slate-200">
+                                {{ $solution }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+
+            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+                <div class="max-w-2xl">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Features</p>
+                    <h2 class="mt-3 text-3xl font-black text-white">Everything needed for a clean mission board.</h2>
+                </div>
+                <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    @foreach ([
+                        ['title' => 'Quest CRUD', 'body' => 'Create, edit, delete, filter, and view quest details.'],
+                        ['title' => 'Categories', 'body' => 'Group quests into Work, Study, Health, Projects, and more.'],
+                        ['title' => 'EXP and Level', 'body' => 'Complete quests to gain EXP and raise your level.'],
+                        ['title' => 'Leaderboard', 'body' => 'See top users by total EXP without exposing private data.'],
+                    ] as $feature)
+                        <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-5 shadow-xl shadow-purple-950/10 transition hover:-translate-y-0.5 hover:border-purple-300/30">
+                            <h3 class="font-bold text-white">{{ $feature['title'] }}</h3>
+                            <p class="mt-3 text-sm leading-6 text-slate-400">{{ $feature['body'] }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+                <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-6 shadow-xl shadow-purple-950/20 lg:p-8">
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">How It Works</p>
+                    <div class="mt-6 grid gap-4 md:grid-cols-4">
+                        @foreach ([
+                            ['step' => '01', 'title' => 'Register', 'body' => 'Create your account and enter the mission board.'],
+                            ['step' => '02', 'title' => 'Create quests', 'body' => 'Add title, category, difficulty, status, and deadline.'],
+                            ['step' => '03', 'title' => 'Complete work', 'body' => 'Finish quests to claim EXP rewards.'],
+                            ['step' => '04', 'title' => 'Level up', 'body' => 'Track progress and climb the leaderboard.'],
+                        ] as $item)
+                            <div class="rounded-md border border-white/10 bg-[#0F172A]/80 p-5">
+                                <p class="text-sm font-black text-amber-300">{{ $item['step'] }}</p>
+                                <h3 class="mt-3 font-bold text-white">{{ $item['title'] }}</h3>
+                                <p class="mt-2 text-sm leading-6 text-slate-400">{{ $item['body'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+
+            <footer class="border-t border-white/10 px-5 py-8 sm:px-6 lg:px-8">
+                <div class="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+                    <p>QuestBoard - Level Up Your Productivity</p>
+                    <p>Built with Laravel, Breeze, Tailwind CSS, Vite, and MySQL-ready migrations.</p>
+                </div>
+            </footer>
         </main>
     </body>
 </html>

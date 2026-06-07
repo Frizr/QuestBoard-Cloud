@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'total_exp', 'level'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -31,8 +31,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function tasks(): HasMany
+    public function quests(): HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Quest::class);
+    }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public static function levelForExp(int $totalExp): int
+    {
+        return intdiv(max(0, $totalExp), 250) + 1;
     }
 }

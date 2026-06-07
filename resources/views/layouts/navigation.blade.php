@@ -16,7 +16,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Board') }}
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('quests.index')" :active="request()->routeIs('quests.*')">
+                        {{ __('Quests') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                        {{ __('Categories') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
+                        {{ __('Leaderboard') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -71,7 +80,16 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Board') }}
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('quests.index')" :active="request()->routeIs('quests.*')">
+                {{ __('Quests') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                {{ __('Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
+                {{ __('Leaderboard') }}
             </x-responsive-nav-link>
         </div>
 
@@ -79,7 +97,7 @@
         <div class="border-t border-white/10 pb-1 pt-4">
             <div class="px-4">
                 <div class="text-base font-medium text-white">{{ Auth::user()->name }}</div>
-                <div class="text-sm font-medium text-slate-400">{{ Auth::user()->email }}</div>
+                <div class="text-sm font-medium text-slate-400">Level {{ Auth::user()->level ?? 1 }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

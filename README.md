@@ -1,58 +1,309 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# QuestBoard
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Level Up Your Productivity**
 
-## About Laravel
+QuestBoard is a cloud-ready Laravel task management application with RPG gamification. Users can turn daily tasks, goals, responsibilities, and work into quests. Each quest has a category, difficulty, deadline, status, and EXP reward. Completing quests increases user EXP and level.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel Breeze authentication.
+- Dark modern RPG landing page.
+- User dashboard with quest statistics.
+- Category CRUD.
+- Quest CRUD with detail page.
+- Quest search, filter, and sorting.
+- Difficulty badges and status badges.
+- Overdue badge without storing `overdue` as a database status.
+- EXP reward calculation.
+- Level progress bar.
+- Leaderboard top 10 users by EXP.
+- Authorization so users only manage their own categories and quests.
+- Responsive Blade + Tailwind CSS UI.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stack
 
-## Learning Laravel
+- Laravel 13
+- Laravel Breeze
+- Blade templates
+- Tailwind CSS
+- Vite
+- Eloquent ORM
+- MySQL for Laragon/AWS
+- Composer
+- npm
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Local Setup Using Laragon
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Put the project inside Laragon `www` directory, for example:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+   ```text
+   C:\laragon\www\QuestBoard
+   ```
 
-## Agentic Development
+2. Open Laragon.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+3. Start Apache and MySQL.
+
+4. Open Laragon Terminal and enter the project folder:
+
+   ```bash
+   cd C:\laragon\www\QuestBoard
+   ```
+
+5. Install PHP dependencies:
+
+   ```bash
+   composer install
+   ```
+
+6. Install frontend dependencies:
+
+   ```bash
+   npm install
+   ```
+
+7. Copy environment file:
+
+   ```bash
+   copy .env.example .env
+   ```
+
+8. Create a MySQL database named:
+
+   ```text
+   questboard
+   ```
+
+   You can create it from Laragon database tools, phpMyAdmin, or MySQL CLI.
+
+9. Configure `.env`:
+
+   ```env
+   APP_NAME=QuestBoard
+   APP_ENV=local
+   APP_DEBUG=true
+   APP_URL=http://questboard.test
+
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=questboard
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+10. Generate app key:
+
+    ```bash
+    php artisan key:generate
+    ```
+
+11. Run migration and seeder:
+
+    ```bash
+    php artisan migrate --seed
+    ```
+
+12. Run Vite dev server:
+
+    ```bash
+    npm run dev
+    ```
+
+13. Run Laravel development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+    Or access the app through Laragon virtual host:
+
+    ```text
+    http://questboard.test
+    ```
+
+## Database Setup
+
+QuestBoard is designed to run with MySQL in Laragon and AWS EC2.
+
+Main tables:
+
+- `users`
+- `categories`
+- `quests`
+- `sessions`
+- `cache`
+- `jobs`
+- `migrations`
+
+The `users` table includes:
+
+- `total_exp`
+- `level`
+
+The `quests` table includes:
+
+- `user_id`
+- `category_id`
+- `title`
+- `description`
+- `difficulty`
+- `status`
+- `reward_exp`
+- `deadline`
+- `completed_at`
+
+## Migration and Seeder
+
+Run:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php artisan migrate --seed
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+The seeder creates:
 
-## Contributing
+- Demo user.
+- Default categories.
+- Sample quests with different difficulties and statuses.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Default Demo Account
 
-## Code of Conduct
+```text
+Email: demo@questboard.test
+Password: password
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## AWS EC2 Deployment Notes
 
-## Security Vulnerabilities
+General deployment flow:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Create an AWS EC2 Ubuntu Server instance.
+2. Open ports `22`, `80`, and optionally `443` in Security Group.
+3. SSH into the server.
+4. Install Apache, PHP, MySQL, Composer, Git, and Node.js.
+5. Clone project into:
 
-## License
+   ```bash
+   /var/www/questboard
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Configure production `.env` database settings.
+
+7. Install optimized PHP dependencies:
+
+   ```bash
+   composer install --optimize-autoloader --no-dev
+   ```
+
+8. Generate app key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+9. Run migration and seeder:
+
+   ```bash
+   php artisan migrate --seed --force
+   ```
+
+10. Build frontend assets:
+
+    ```bash
+    npm install
+    npm run build
+    ```
+
+11. Set permissions:
+
+    ```bash
+    sudo chown -R www-data:www-data /var/www/questboard
+    sudo chmod -R 775 /var/www/questboard/storage /var/www/questboard/bootstrap/cache
+    ```
+
+12. Configure Apache VirtualHost to point to:
+
+    ```text
+    /var/www/questboard/public
+    ```
+
+13. Enable Apache rewrite module:
+
+    ```bash
+    sudo a2enmod rewrite
+    ```
+
+14. Restart Apache:
+
+    ```bash
+    sudo systemctl restart apache2
+    ```
+
+15. Cache production config:
+
+    ```bash
+    php artisan config:cache
+    php artisan route:cache
+    php artisan view:cache
+    ```
+
+16. Access app using EC2 public IP or configured domain.
+
+## Firewall Notes
+
+For Ubuntu UFW:
+
+```bash
+sudo ufw allow OpenSSH
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
+sudo ufw status
+```
+
+For AWS Security Group, allow:
+
+| Port | Purpose |
+|---|---|
+| 22 | SSH |
+| 80 | HTTP |
+| 443 | HTTPS |
+
+## Screenshots
+
+Screenshots can be added here:
+
+- Landing page screenshot.
+- Login page screenshot.
+- Dashboard screenshot.
+- Quest list screenshot.
+- Quest detail screenshot.
+- Category management screenshot.
+- Leaderboard screenshot.
+
+## Useful Commands
+
+Run tests:
+
+```bash
+php artisan test
+```
+
+Clear cache:
+
+```bash
+php artisan optimize:clear
+```
+
+Build assets:
+
+```bash
+npm run build
+```
+
+Run local server:
+
+```bash
+php artisan serve
+```
