@@ -13,10 +13,10 @@ Framework:
 - Alpine.js from Laravel Breeze
 - MySQL via Laragon
 
-Current working directory:
+Typical project folder after cloning:
 
 ```text
-D:\Aku(rizal)\Telkom University Surabaya\Semester 6\Komputasi Awan\Tubes\QuestBoard
+QuestBoard
 ```
 
 Backend features already exist and must stay working:

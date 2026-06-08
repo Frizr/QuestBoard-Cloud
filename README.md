@@ -65,37 +65,55 @@ Apache
 MySQL
 ```
 
-3. Masuk ke folder project:
+3. Buka terminal di folder Laragon `www`:
 
 ```bash
-cd /d "D:\Aku(rizal)\Telkom University Surabaya\Semester 6\Komputasi Awan\Tubes\QuestBoard"
+cd C:\laragon\www
 ```
 
-4. Install dependency PHP:
+4. Clone repository:
+
+```bash
+git clone https://github.com/Frizr/QuestBoard-Cloud.git QuestBoard
+```
+
+5. Masuk ke folder project:
+
+```bash
+cd QuestBoard
+```
+
+6. Install dependency PHP:
 
 ```bash
 composer install
 ```
 
-5. Install dependency frontend:
+7. Install dependency frontend:
 
 ```bash
 npm install
 ```
 
-6. Buat file `.env` jika belum ada:
+8. Buat file `.env` jika belum ada:
 
 ```bash
 copy .env.example .env
 ```
 
-7. Generate app key:
+Untuk Git Bash/Linux/macOS, gunakan:
+
+```bash
+cp .env.example .env
+```
+
+9. Generate app key:
 
 ```bash
 php artisan key:generate
 ```
 
-8. Buat database MySQL bernama:
+10. Buat database MySQL bernama:
 
 ```text
 questboard
@@ -109,7 +127,7 @@ Can't create database 'questboard'; database exists
 
 Itu aman. Artinya database `questboard` sudah tersedia.
 
-9. Pastikan konfigurasi database di `.env` seperti ini:
+11. Pastikan konfigurasi database di `.env` seperti ini:
 
 ```env
 APP_NAME=QuestBoard
@@ -125,7 +143,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-10. Jalankan migration dan seeder:
+12. Jalankan migration dan seeder:
 
 ```bash
 php artisan migrate --seed
@@ -139,7 +157,7 @@ INFO  Nothing to migrate.
 
 Itu bukan masalah. Artinya struktur database sudah terbaru.
 
-11. Buat storage link untuk foto profile:
+13. Buat storage link untuk foto profile:
 
 ```bash
 php artisan storage:link
