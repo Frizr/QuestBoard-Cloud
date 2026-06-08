@@ -2,131 +2,351 @@
 
 **Level Up Your Productivity**
 
-QuestBoard is a cloud-ready Laravel task management application with RPG gamification. Users can turn daily tasks, goals, responsibilities, and work into quests. Each quest has a category, difficulty, deadline, status, and EXP reward. Completing quests increases user EXP and level.
+QuestBoard adalah aplikasi produktivitas berbasis Laravel yang mengubah tugas harian menjadi quest bergaya RPG. User dapat membuat kategori guild, membuat quest, menentukan difficulty, deadline, status, mendapatkan EXP, naik level, dan bersaing di leaderboard.
 
-## Features
+UI saat ini diarahkan ke tema **premium dark fantasy RPG**: guild hall, quest board, mission journal, magical purple glow, dan aksen gold reward.
 
-- Laravel Breeze authentication.
-- Dark modern RPG landing page.
-- User dashboard with quest statistics.
-- Category CRUD.
-- Quest CRUD with detail page.
-- Quest search, filter, and sorting.
-- Difficulty badges and status badges.
-- Overdue badge without storing `overdue` as a database status.
-- EXP reward calculation.
-- Level progress bar.
-- Leaderboard top 10 users by EXP.
-- Authorization so users only manage their own categories and quests.
-- Responsive Blade + Tailwind CSS UI.
+## Fitur Utama
+
+- Authentication dari Laravel Breeze.
+- Landing page cinematic dengan video background lokal.
+- Dashboard `Guild Hall` berisi statistik quest, level, total EXP, dan progress level.
+- CRUD quest lengkap.
+- CRUD kategori guild lengkap.
+- Category color picker dan emblem selector, jadi user tidak perlu mengetik kode warna.
+- Quest search, filter, sorting, difficulty badge, status badge, dan overdue state.
+- EXP otomatis berdasarkan difficulty.
+- Level otomatis berdasarkan total EXP dari quest yang completed.
+- Leaderboard `Hall of Heroes`.
+- Profile upload photo.
+- RPG profile picture template fallback.
+- Avatar tampil di sidebar profile dan leaderboard.
+- Responsive Blade + Tailwind CSS.
+- Authorization agar user hanya mengelola quest dan kategori miliknya sendiri.
 
 ## Tech Stack
 
-- Laravel 13
+- PHP `^8.3`
+- Laravel `13`
 - Laravel Breeze
-- Blade templates
+- Blade
 - Tailwind CSS
+- Alpine.js
 - Vite
-- Eloquent ORM
-- MySQL for Laragon/AWS
+- MySQL
 - Composer
 - npm
+- Laragon untuk local development
 
-## Local Setup Using Laragon
+## Struktur Penting
 
-1. Put the project inside Laragon `www` directory, for example:
+```text
+app/Http/Controllers      Controller aplikasi
+app/Models                Model Eloquent
+app/Support               Helper kecil, termasuk avatar template
+database/migrations       Struktur database
+database/seeders          Data demo
+public/images             Gambar lokal
+public/videos             Video background landing page
+resources/css/app.css     Styling Tailwind custom
+resources/views           Blade views dan components
+routes/web.php            Route utama aplikasi
+routes/auth.php           Route auth Breeze
+```
 
-   ```text
-   C:\laragon\www\QuestBoard
-   ```
+## Setup Local Dengan Laragon
 
-2. Open Laragon.
+1. Nyalakan Laragon.
 
-3. Start Apache and MySQL.
+2. Start:
 
-4. Open Laragon Terminal and enter the project folder:
+```text
+Apache
+MySQL
+```
 
-   ```bash
-   cd C:\laragon\www\QuestBoard
-   ```
+3. Masuk ke folder project:
 
-5. Install PHP dependencies:
+```bash
+cd /d "D:\Aku(rizal)\Telkom University Surabaya\Semester 6\Komputasi Awan\Tubes\QuestBoard"
+```
 
-   ```bash
-   composer install
-   ```
+4. Install dependency PHP:
 
-6. Install frontend dependencies:
+```bash
+composer install
+```
 
-   ```bash
-   npm install
-   ```
+5. Install dependency frontend:
 
-7. Copy environment file:
+```bash
+npm install
+```
 
-   ```bash
-   copy .env.example .env
-   ```
+6. Buat file `.env` jika belum ada:
 
-8. Create a MySQL database named:
+```bash
+copy .env.example .env
+```
 
-   ```text
-   questboard
-   ```
+7. Generate app key:
 
-   You can create it from Laragon database tools, phpMyAdmin, or MySQL CLI.
+```bash
+php artisan key:generate
+```
 
-9. Configure `.env`:
+8. Buat database MySQL bernama:
 
-   ```env
-   APP_NAME=QuestBoard
-   APP_ENV=local
-   APP_DEBUG=true
-   APP_URL=http://questboard.test
+```text
+questboard
+```
 
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=questboard
-   DB_USERNAME=root
-   DB_PASSWORD=
-   ```
+Jika database sudah ada dan muncul pesan seperti ini:
 
-10. Generate app key:
+```text
+Can't create database 'questboard'; database exists
+```
 
-    ```bash
-    php artisan key:generate
-    ```
+Itu aman. Artinya database `questboard` sudah tersedia.
 
-11. Run migration and seeder:
+9. Pastikan konfigurasi database di `.env` seperti ini:
 
-    ```bash
-    php artisan migrate --seed
-    ```
+```env
+APP_NAME=QuestBoard
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://questboard.test
 
-12. Run Vite dev server:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=questboard
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-    ```bash
-    npm run dev
-    ```
+10. Jalankan migration dan seeder:
 
-13. Run Laravel development server:
+```bash
+php artisan migrate --seed
+```
 
-    ```bash
-    php artisan serve
-    ```
+Kalau migration sebelumnya sudah pernah jalan dan muncul:
 
-    Or access the app through Laragon virtual host:
+```text
+INFO  Nothing to migrate.
+```
 
-    ```text
-    http://questboard.test
-    ```
+Itu bukan masalah. Artinya struktur database sudah terbaru.
 
-## Database Setup
+11. Buat storage link untuk foto profile:
 
-QuestBoard is designed to run with MySQL in Laragon and AWS EC2.
+```bash
+php artisan storage:link
+```
 
-Main tables:
+Jika muncul:
+
+```text
+The public/storage link already exists.
+```
+
+Itu aman. Artinya link storage sudah pernah dibuat.
+
+## Cara Mengaktifkan Web
+
+Buka dua terminal di folder project.
+
+Terminal pertama untuk Vite:
+
+```bash
+npm run dev
+```
+
+Biarkan terminal ini tetap menyala.
+
+Terminal kedua untuk Laravel:
+
+```bash
+php artisan serve
+```
+
+Buka browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+Jika memakai Laragon virtual host, bisa juga buka:
+
+```text
+http://questboard.test
+```
+
+Catatan: saat `npm run dev` muncul tulisan seperti ini:
+
+```text
+[vite] (client) [optimizer] bundling dependencies...
+```
+
+Itu normal. Biasanya hanya proses Vite menyiapkan dependency.
+
+## Cara Pakai Aplikasi
+
+1. Buka halaman utama QuestBoard.
+
+2. Pilih:
+
+```text
+Start Your Journey
+```
+
+untuk register, atau:
+
+```text
+Enter Guild Hall
+```
+
+untuk login.
+
+3. Login dengan akun demo jika sudah menjalankan seeder:
+
+```text
+Email: demo@questboard.test
+Password: password
+```
+
+4. Masuk ke `Guild Hall`.
+
+Di halaman ini user bisa melihat:
+
+- level adventurer
+- total EXP
+- progress EXP
+- total quest
+- pending quest
+- in progress quest
+- completed quest
+- overdue quest
+- recent activity
+- upcoming deadlines
+
+5. Buat kategori di `Guild Categories`.
+
+Kategori dipakai sebagai divisi guild, misalnya:
+
+- Work
+- Study
+- Project
+- Health
+- Personal
+
+Saat membuat kategori:
+
+- isi nama kategori
+- pilih warna dari color picker
+- pilih emblem/logo guild
+- simpan
+
+User tidak perlu mengetik kode warna secara manual.
+
+6. Buat quest di `Quest Log`.
+
+Klik:
+
+```text
+Post Quest
+```
+
+Isi:
+
+- title
+- description
+- category
+- difficulty
+- status
+- deadline
+
+Reward EXP dihitung otomatis dari difficulty.
+
+7. Update status quest.
+
+Jika quest diubah menjadi:
+
+```text
+completed
+```
+
+maka EXP user akan bertambah dan level akan dihitung ulang.
+
+8. Buka detail quest.
+
+Detail quest tampil seperti mission briefing, berisi:
+
+- title
+- description
+- category
+- difficulty
+- status
+- deadline
+- reward EXP
+- completed date jika sudah selesai
+
+9. Cek leaderboard di `Hall of Heroes`.
+
+Leaderboard menampilkan:
+
+- rank
+- adventurer name
+- profile avatar
+- level
+- EXP
+- completed quests
+
+Email user tidak ditampilkan di leaderboard.
+
+10. Edit profile di `Adventurer Profile`.
+
+Di profile user bisa:
+
+- update nama
+- update email
+- upload profile photo
+- pilih RPG portrait template
+- hapus uploaded photo dan kembali ke template
+- update password
+- delete account
+
+Jika foto upload tidak muncul, pastikan sudah menjalankan:
+
+```bash
+php artisan storage:link
+```
+
+## Akses Database Lewat phpMyAdmin
+
+Pastikan Apache dan MySQL di Laragon sudah menyala.
+
+Buka:
+
+```text
+http://localhost/phpmyadmin
+```
+
+Login default Laragon:
+
+```text
+Username: root
+Password: kosongkan
+```
+
+Pilih database:
+
+```text
+questboard
+```
+
+Tabel penting:
 
 - `users`
 - `categories`
@@ -136,158 +356,112 @@ Main tables:
 - `jobs`
 - `migrations`
 
-The `users` table includes:
+## Database
 
-- `total_exp`
-- `level`
+Tabel `users` menyimpan:
 
-The `quests` table includes:
+- name
+- email
+- password
+- total_exp
+- level
+- avatar_path
+- avatar_template
 
-- `user_id`
-- `category_id`
-- `title`
-- `description`
-- `difficulty`
-- `status`
-- `reward_exp`
-- `deadline`
-- `completed_at`
+Tabel `categories` menyimpan:
 
-## Migration and Seeder
+- user_id
+- name
+- color
+- emblem
 
-Run:
+Tabel `quests` menyimpan:
 
-```bash
-php artisan migrate --seed
-```
+- user_id
+- category_id
+- title
+- description
+- difficulty
+- status
+- reward_exp
+- deadline
+- completed_at
 
-The seeder creates:
+## Video Background
 
-- Demo user.
-- Default categories.
-- Sample quests with different difficulties and statuses.
-
-## Default Demo Account
+Landing page memakai video background lokal dari:
 
 ```text
-Email: demo@questboard.test
-Password: password
+public/videos/questboard-bg.mp4
+public/videos/questboard-bg.webm
+public/videos/questboard-bg.svg
 ```
 
-## AWS EC2 Deployment Notes
+Aturan:
 
-General deployment flow:
+- Video background hanya untuk landing page hero.
+- Optional untuk login/register.
+- Jangan dipakai di dashboard, quest CRUD, category CRUD, atau leaderboard.
+- Pakai overlay gelap agar teks tetap terbaca.
+- Jika video tidak tersedia, pakai fallback gradient atau SVG.
 
-1. Create an AWS EC2 Ubuntu Server instance.
-2. Open ports `22`, `80`, and optionally `443` in Security Group.
-3. SSH into the server.
-4. Install Apache, PHP, MySQL, Composer, Git, and Node.js.
-5. Clone project into:
+## Profile Picture
 
-   ```bash
-   /var/www/questboard
-   ```
+Profile picture punya dua mode:
 
-6. Configure production `.env` database settings.
+1. Uploaded photo
+2. RPG portrait template
 
-7. Install optimized PHP dependencies:
+Uploaded photo disimpan di:
 
-   ```bash
-   composer install --optimize-autoloader --no-dev
-   ```
+```text
+storage/app/public/avatars
+```
 
-8. Generate app key:
+Browser mengaksesnya lewat:
 
-   ```bash
-   php artisan key:generate
-   ```
+```text
+public/storage
+```
 
-9. Run migration and seeder:
-
-   ```bash
-   php artisan migrate --seed --force
-   ```
-
-10. Build frontend assets:
-
-    ```bash
-    npm install
-    npm run build
-    ```
-
-11. Set permissions:
-
-    ```bash
-    sudo chown -R www-data:www-data /var/www/questboard
-    sudo chmod -R 775 /var/www/questboard/storage /var/www/questboard/bootstrap/cache
-    ```
-
-12. Configure Apache VirtualHost to point to:
-
-    ```text
-    /var/www/questboard/public
-    ```
-
-13. Enable Apache rewrite module:
-
-    ```bash
-    sudo a2enmod rewrite
-    ```
-
-14. Restart Apache:
-
-    ```bash
-    sudo systemctl restart apache2
-    ```
-
-15. Cache production config:
-
-    ```bash
-    php artisan config:cache
-    php artisan route:cache
-    php artisan view:cache
-    ```
-
-16. Access app using EC2 public IP or configured domain.
-
-## Firewall Notes
-
-For Ubuntu UFW:
+Karena itu perlu:
 
 ```bash
-sudo ufw allow OpenSSH
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw enable
-sudo ufw status
+php artisan storage:link
 ```
 
-For AWS Security Group, allow:
+Template avatar saat ini diatur dari:
 
-| Port | Purpose |
-|---|---|
-| 22 | SSH |
-| 80 | HTTP |
-| 443 | HTTPS |
+```text
+app/Support/AvatarTemplates.php
+resources/views/components/avatar-portrait.blade.php
+resources/views/components/adventurer-avatar.blade.php
+```
 
-## Screenshots
+Catatan: profile picture template masih perlu diperbagus agar lebih premium RPG/tabletop fantasy.
 
-Screenshots can be added here:
+## Stitch Design Reference
 
-- Landing page screenshot.
-- Login page screenshot.
-- Dashboard screenshot.
-- Quest list screenshot.
-- Quest detail screenshot.
-- Category management screenshot.
-- Leaderboard screenshot.
+Folder ini hanya dipakai sebagai referensi visual:
+
+```text
+stitch_questboard_dark_fantasy_redesign
+```
+
+Jangan copy HTML static secara langsung. Desain harus dikonversi menjadi Blade + Tailwind yang tetap memakai logic Laravel.
 
 ## Useful Commands
 
-Run tests:
+Jalankan test:
 
 ```bash
 php artisan test
+```
+
+Build frontend:
+
+```bash
+npm run build
 ```
 
 Clear cache:
@@ -296,14 +470,116 @@ Clear cache:
 php artisan optimize:clear
 ```
 
-Build assets:
+Compile Blade untuk cek error:
 
 ```bash
+php artisan view:cache
+php artisan view:clear
+```
+
+Refresh database local dengan seeder:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+Hati-hati: command ini menghapus semua data local lalu membuat ulang database.
+
+## Troubleshooting
+
+### `database exists`
+
+Jika saat membuat database muncul:
+
+```text
+database exists
+```
+
+Artinya database sudah ada. Lanjut ke migration.
+
+### `Nothing to migrate`
+
+Artinya migration sudah pernah dijalankan. Ini normal.
+
+### `public/storage link already exists`
+
+Artinya storage link sudah ada. Ini normal.
+
+### Foto profile tidak tampil
+
+Jalankan:
+
+```bash
+php artisan storage:link
+```
+
+Jika link sudah ada tapi tetap tidak tampil:
+
+```bash
+php artisan storage:unlink
+php artisan storage:link
+```
+
+### phpMyAdmin meminta install Composer
+
+Biasanya phpMyAdmin Laragon belum lengkap atau dependency-nya belum terinstall. Kalau phpMyAdmin sudah bisa dibuka, tidak perlu menjalankan `composer update` lagi di folder phpMyAdmin.
+
+Jika Composer error `ext-zip` saat mengurus phpMyAdmin, aktifkan extension `zip` di `php.ini` Laragon.
+
+### Vite port `5173`
+
+`npm run dev` memang menjalankan Vite di:
+
+```text
+http://localhost:5173
+```
+
+Tetap buka aplikasi Laravel dari:
+
+```text
+http://127.0.0.1:8000
+```
+
+atau:
+
+```text
+http://questboard.test
+```
+
+## Deployment Notes
+
+Untuk production/AWS EC2:
+
+```bash
+composer install --optimize-autoloader --no-dev
+npm install
 npm run build
+php artisan migrate --force
+php artisan storage:link
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 ```
 
-Run local server:
+Apache/Nginx harus diarahkan ke:
 
-```bash
-php artisan serve
+```text
+public
 ```
+
+Folder yang perlu writable:
+
+```text
+storage
+bootstrap/cache
+```
+
+## Memory Prompt
+
+Untuk melanjutkan pengembangan UI/UX, baca:
+
+```text
+QUESTBOARD_MEMORY_PROMPT.md
+```
+
+File itu berisi arahan desain, kekurangan yang masih perlu diperbaiki, aturan asset profile picture, dan prompt lanjutan untuk Codex/AI.
