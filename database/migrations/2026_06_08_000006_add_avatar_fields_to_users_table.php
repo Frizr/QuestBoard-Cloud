@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('avatar_path')->nullable();
-            $table->string('avatar_template')->default('shadow-mage');
+            $table->string('avatar_template')->default('human-vanguard');
         });
     }
 
