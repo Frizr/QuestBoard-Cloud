@@ -591,13 +591,3 @@ Folder yang perlu writable:
 storage
 bootstrap/cache
 ```
-
-## Memory Prompt
-
-Untuk melanjutkan pengembangan UI/UX, baca:
-
-```text
-QUESTBOARD_MEMORY_PROMPT.md
-```
-
-File itu berisi arahan desain, kekurangan yang masih perlu diperbaiki, aturan asset profile picture, dan prompt lanjutan untuk Codex/AI.
