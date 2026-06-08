@@ -5,10 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+    private const EMBLEMS = [
+        'shield',
+        'sword',
+        'book',
+        'compass',
+        'hammer',
+        'star',
+        'crown',
+        'flame',
+    ];
+
     public function index(Request $request): View
     {
         return view('categories.index', [
@@ -29,8 +41,12 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:100'],
-            'color' => ['nullable', 'string', 'max:30'],
+            'color' => ['nullable', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'emblem' => ['nullable', Rule::in(self::EMBLEMS)],
         ]);
+
+        $validated['color'] ??= '#6D28D9';
+        $validated['emblem'] ??= 'shield';
 
         $request->user()->categories()->create($validated);
 
@@ -52,8 +68,12 @@ class CategoryController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:100'],
-            'color' => ['nullable', 'string', 'max:30'],
+            'color' => ['nullable', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'emblem' => ['nullable', Rule::in(self::EMBLEMS)],
         ]);
+
+        $validated['color'] ??= '#6D28D9';
+        $validated['emblem'] ??= 'shield';
 
         $category->update($validated);
 

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuestBoard - Enter the Guild Hall</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#332f39",
+                        "text-muted": "#94A3B8",
+                        "surface-container-highest": "#37333e",
+                        "on-background": "#e8dfee",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-surface-variant": "#ccc3d8",
+                        "text-soft": "#CBD5E1",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#221e28",
+                        "on-primary": "#3f008e",
+                        "error-container": "#93000a",
+                        "danger": "#EF4444",
+                        "inverse-surface": "#e8dfee",
+                        "outline": "#958da1",
+                        "primary-container": "#7c3aed",
+                        "background-secondary": "#111827",
+                        "warning": "#F59E0B",
+                        "surface-container-lowest": "#100d16",
+                        "border": "#334155",
+                        "secondary-fixed-dim": "#f9bd22",
+                        "tertiary": "#ffb784",
+                        "text-main": "#F8FAFC",
+                        "on-secondary-fixed": "#261a00",
+                        "info": "#3B82F6",
+                        "surface-bright": "#3c3742",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-tertiary-container": "#ffe0cd",
+                        "on-secondary": "#402d00",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "background-main": "#0B1020",
+                        "on-primary-container": "#ede0ff",
+                        "inverse-primary": "#732ee4",
+                        "primary-fixed": "#eaddff",
+                        "on-surface": "#e8dfee",
+                        "background": "#15121b",
+                        "success": "#22C55E",
+                        "primary-fixed-dim": "#d2bbff",
+                        "tertiary-container": "#a15100",
+                        "on-secondary-fixed-variant": "#5c4300",
+                        "gold-dark": "#B45309",
+                        "outline-variant": "#4a4455",
+                        "secondary-fixed": "#ffdf9f",
+                        "magic-blue": "#38BDF8",
+                        "surface": "#1E293B",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#d2bbff",
+                        "on-primary-fixed": "#25005a",
+                        "on-tertiary": "#4f2500",
+                        "primary": "#d2bbff",
+                        "card": "#151B2E",
+                        "secondary-container": "#e3aa00",
+                        "surface-dim": "#15121b",
+                        "on-secondary-container": "#5a4100",
+                        "surface-container-high": "#2c2833",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-variant": "#37333e",
+                        "surface-container-low": "#1d1a24",
+                        "on-tertiary-fixed": "#301400",
+                        "secondary": "#ffc640"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Cinzel"],
+                        "display-hero": ["Cinzel"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Cinzel"],
+                        "headline-sm": ["Cinzel"],
+                        "headline-md": ["Cinzel"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "display-hero": ["48px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.15);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 35px rgba(124, 58, 237, 0.3);
+        }
+        .bg-hero-pattern {
+            background-size: cover;
+            background-position: center;
+        }
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background-main text-text-main min-h-screen flex items-center justify-center relative overflow-hidden font-body-md">
+<!-- Atmospheric Background -->
+<div class="absolute inset-0 z-0 bg-hero-pattern opacity-30" data-alt="A dark fantasy RPG landscape showing a majestic, imposing adventurer's guildhall at night. The scene is illuminated by cinematic, ethereal purple and gold magical glows against deep navy shadows. The architectural style is grand and mysterious, fitting a high-end gaming universe. The mood is epic and inviting, hinting at grand quests and hidden treasures within." style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLurVFAOg5_VBgyr4bcFm_l04UrPuuA7Zchv4YQ0D3t41Kl5Vo4Ze-AbxgH7Gxk0q3Y2W_aA2HmeWWAphXqzQRmTKX5BVyJPPtm-LAkF7kxWtbeKuwfKhD_zNXzJtghY2msHYdbp1R1LBe2JDlnezEwp53T6dVAOgQ0qctnoKI_SR-pbURA5KzOhqw7_gdy-WcIBXGujp3mz9UKtyncPvKrkGDcJMF6di5pMYA7DptOsA6XtO4wvSH9n56D4');">
+</div>
+<!-- Magical Overlays -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-container rounded-full blur-[120px] opacity-10 z-0"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary rounded-full blur-[120px] opacity-5 z-0"></div>
+<!-- Main Glassmorphism Container -->
+<main class="relative z-10 w-full max-w-[440px] p-margin-mobile md:p-0">
+<!-- Brand Header -->
+<div class="text-center mb-8">
+<h1 class="font-display-hero text-display-hero text-primary tracking-wider flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                QuestBoard
+            </h1>
+</div>
+<!-- Auth Card -->
+<div class="bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl shadow-[0_0_40px_rgba(11,16,32,0.8)] glow-effect transition-all duration-300 overflow-hidden">
+<!-- Tab Navigation -->
+<div class="flex border-b border-border/50 bg-surface-container-low/50">
+<button class="flex-1 py-4 text-center font-label-md text-label-md border-b-2 border-primary text-primary transition-colors hover:bg-surface-container-high/30" id="tab-login" onclick="switchTab('login')">
+                    Login
+                </button>
+<button class="flex-1 py-4 text-center font-label-md text-label-md border-b-2 border-transparent text-text-muted hover:text-text-main transition-colors hover:bg-surface-container-high/30" id="tab-register" onclick="switchTab('register')">
+                    Register
+                </button>
+</div>
+<div class="p-8">
+<!-- Login View -->
+<div class="tab-content active" id="view-login">
+<div class="mb-8 text-center">
+<h2 class="font-headline-md text-headline-md text-text-main mb-2">Enter the Guild Hall</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Continue your journey and manage your quests.</p>
+</div>
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md text-text-soft mb-2">Email Scroll Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">mail</span>
+<input class="w-full bg-surface-container-low border border-border rounded-lg pl-10 pr-4 py-3 text-text-main focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors font-body-md placeholder:text-text-muted/50" placeholder="adventurer@guild.com" type="email"/>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block font-label-md text-label-md text-text-soft">Secret Passphrase</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim transition-colors" href="#">Forgot rune?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">key</span>
+<input class="w-full bg-surface-container-low border border-border rounded-lg pl-10 pr-4 py-3 text-text-main focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors font-body-md placeholder:text-text-muted/50" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center">
+<input class="w-4 h-4 rounded border-border bg-surface-container-low text-primary focus:ring-primary focus:ring-offset-background-main" id="remember" type="checkbox"/>
+<label class="ml-2 font-body-sm text-body-sm text-text-muted" for="remember">Remember my aura</label>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:shadow-[0_0_25px_rgba(124,58,237,0.5)] hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2" type="submit">
+<span>Unlock Gates</span>
+<span class="material-symbols-outlined text-[18px]">login</span>
+</button>
+</form>
+</div>
+<!-- Register View -->
+<div class="tab-content" id="view-register">
+<div class="mb-8 text-center">
+<h2 class="font-headline-md text-headline-md text-secondary mb-2">Begin Your Adventure</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Create your adventurer account and start leveling up your productivity.</p>
+</div>
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md text-text-soft mb-2">Adventurer Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">person</span>
+<input class="w-full bg-surface-container-low border border-border rounded-lg pl-10 pr-4 py-3 text-text-main focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition-colors font-body-md placeholder:text-text-muted/50" placeholder="e.g. Lancelot" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-soft mb-2">Email Scroll Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">mail</span>
+<input class="w-full bg-surface-container-low border border-border rounded-lg pl-10 pr-4 py-3 text-text-main focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition-colors font-body-md placeholder:text-text-muted/50" placeholder="adventurer@guild.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-soft mb-2">Secret Passphrase</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">key</span>
+<input class="w-full bg-surface-container-low border border-border rounded-lg pl-10 pr-4 py-3 text-text-main focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none transition-colors font-body-md placeholder:text-text-muted/50" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full bg-gradient-to-r from-warning to-gold-dark text-on-secondary font-label-md text-label-md py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(245,158,11,0.2)] hover:shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2 mt-2" type="submit">
+<span>Join the Guild</span>
+<span class="material-symbols-outlined text-[18px]">swords</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="mt-6 text-center space-x-4 font-body-sm text-body-sm text-text-muted">
+<a class="hover:text-primary transition-colors" href="#">Guild Code</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="#">Support Tavern</a>
+</div>
+</main>
+<script>
+        function switchTab(tab) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Reset all tabs
+            document.getElementById('tab-login').className = "flex-1 py-4 text-center font-label-md text-label-md border-b-2 border-transparent text-text-muted hover:text-text-main transition-colors hover:bg-surface-container-high/30";
+            document.getElementById('tab-register').className = "flex-1 py-4 text-center font-label-md text-label-md border-b-2 border-transparent text-text-muted hover:text-text-main transition-colors hover:bg-surface-container-high/30";
+            
+            if(tab === 'login') {
+                document.getElementById('view-login').classList.add('active');
+                document.getElementById('tab-login').className = "flex-1 py-4 text-center font-label-md text-label-md border-b-2 border-primary text-primary transition-colors hover:bg-surface-container-high/30";
+            } else {
+                document.getElementById('view-register').classList.add('active');
+                document.getElementById('tab-register').className = "flex-1 py-4 text-center font-label-md text-label-md border-b-2 border-secondary text-secondary transition-colors hover:bg-surface-container-high/30";
+            }
+        }
+    </script>
+</body></html>

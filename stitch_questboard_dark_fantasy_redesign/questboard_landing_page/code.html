@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuestBoard - Level Up Your Productivity</title>
+<!-- Google Fonts: Cinzel & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config injected from design system -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#332f39",
+                    "text-muted": "#94A3B8",
+                    "surface-container-highest": "#37333e",
+                    "on-background": "#e8dfee",
+                    "on-tertiary-fixed-variant": "#713700",
+                    "on-surface-variant": "#ccc3d8",
+                    "text-soft": "#CBD5E1",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#221e28",
+                    "on-primary": "#3f008e",
+                    "error-container": "#93000a",
+                    "danger": "#EF4444",
+                    "inverse-surface": "#e8dfee",
+                    "outline": "#958da1",
+                    "primary-container": "#7c3aed",
+                    "background-secondary": "#111827",
+                    "warning": "#F59E0B",
+                    "surface-container-lowest": "#100d16",
+                    "border": "#334155",
+                    "secondary-fixed-dim": "#f9bd22",
+                    "tertiary": "#ffb784",
+                    "text-main": "#F8FAFC",
+                    "on-secondary-fixed": "#261a00",
+                    "info": "#3B82F6",
+                    "surface-bright": "#3c3742",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#ffdcc6",
+                    "on-tertiary-container": "#ffe0cd",
+                    "on-secondary": "#402d00",
+                    "tertiary-fixed-dim": "#ffb784",
+                    "background-main": "#0B1020",
+                    "on-primary-container": "#ede0ff",
+                    "inverse-primary": "#732ee4",
+                    "primary-fixed": "#eaddff",
+                    "on-surface": "#e8dfee",
+                    "background": "#15121b",
+                    "success": "#22C55E",
+                    "primary-fixed-dim": "#d2bbff",
+                    "tertiary-container": "#a15100",
+                    "on-secondary-fixed-variant": "#5c4300",
+                    "gold-dark": "#B45309",
+                    "outline-variant": "#4a4455",
+                    "secondary-fixed": "#ffdf9f",
+                    "magic-blue": "#38BDF8",
+                    "surface": "#1E293B",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#d2bbff",
+                    "on-primary-fixed": "#25005a",
+                    "on-tertiary": "#4f2500",
+                    "primary": "#d2bbff",
+                    "card": "#151B2E",
+                    "secondary-container": "#e3aa00",
+                    "surface-dim": "#15121b",
+                    "on-secondary-container": "#5a4100",
+                    "surface-container-high": "#2c2833",
+                    "on-primary-fixed-variant": "#5a00c6",
+                    "surface-variant": "#37333e",
+                    "surface-container-low": "#1d1a24",
+                    "on-tertiary-fixed": "#301400",
+                    "secondary": "#ffc640"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "1rem",
+                    "container-max": "1280px",
+                    "stack-sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "margin-desktop": "2.5rem"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Cinzel"],
+                    "display-hero": ["Cinzel"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Cinzel"],
+                    "headline-sm": ["Cinzel"],
+                    "headline-md": ["Cinzel"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                    "display-hero": ["48px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "800" }],
+                    "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "label-sm": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                    "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                    "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                    "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                    "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom utilities for glows and specific effects not easily done with base Tailwind config */
+        .text-glow-primary { text-shadow: 0 0 20px rgba(210, 187, 255, 0.5); }
+        .text-glow-secondary { text-shadow: 0 0 20px rgba(255, 198, 64, 0.5); }
+        .box-glow-primary { box-shadow: 0 0 30px rgba(124, 58, 237, 0.15); }
+        .box-glow-secondary { box-shadow: 0 0 30px rgba(251, 191, 36, 0.15); }
+        
+        .magical-bg-gradient {
+            background: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 40%);
+        }
+        
+        /* Subtle float animation for elements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
+    </style>
+</head>
+<body class="bg-background-main text-on-background font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-text-main overflow-x-hidden">
+<!-- TopNavBar (Shared Component) -->
+<nav class="bg-background-main dark:bg-background-main docked full-width top-0 sticky z-50 border-b border-border/50 backdrop-blur-md bg-opacity-80 shadow-[0_0_15px_rgba(124,58,237,0.2)]">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[28px] drop-shadow-[0_0_8px_rgba(124,58,237,0.8)]" style="font-variation-settings: 'FILL' 1;">swords</span>
+<span class="font-display-hero text-headline-md text-primary dark:text-primary tracking-wider font-bold">QuestBoard</span>
+</div>
+<!-- Center Nav (Implicit for Landing Page, mimicking Active/Inactive styles) -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-300" href="#features">Features</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-300" href="#how-it-works">How It Works</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-300" href="#hall-of-heroes">Hall of Heroes</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">workspace_premium</span>
+</button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded font-label-md text-label-md hover:bg-inverse-primary transition-colors shadow-[0_0_10px_rgba(124,58,237,0.3)]">
+                    Log In
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col relative z-10">
+<!-- Hero Section -->
+<section class="relative pt-24 pb-32 overflow-hidden magical-bg-gradient">
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10 flex flex-col items-center text-center">
+<!-- Eyebrow -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface/50 backdrop-blur-sm mb-8 animate-float">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-text-soft tracking-widest uppercase">The Adventurer's Guild is Open</span>
+</div>
+<!-- Headline -->
+<h1 class="font-display-hero text-display-hero text-text-main mb-6 leading-tight max-w-4xl text-glow-primary">
+<span class="block text-secondary text-glow-secondary mb-2">QuestBoard</span>
+                    Level Up Your Productivity
+                </h1>
+<!-- Description -->
+<p class="font-body-lg text-body-lg text-text-muted max-w-2xl mx-auto mb-12">
+                    Turn your daily tasks into RPG-style quests. Complete missions, gain EXP, and level up your life. Abandon boring to-do lists and forge your legend.
+                </p>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+<!-- Gold Button -->
+<button class="group relative px-8 py-4 rounded bg-gradient-to-r from-warning to-gold-dark text-text-main font-label-md text-label-md shadow-[0_0_20px_rgba(251,191,36,0.3)] hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="relative flex items-center gap-2">
+<span class="material-symbols-outlined">explore</span>
+                            Start Your Journey
+                        </span>
+</button>
+<!-- Purple Button -->
+<button class="px-8 py-4 rounded border border-primary text-primary font-label-md text-label-md hover:bg-primary/10 shadow-[inset_0_0_20px_rgba(124,58,237,0.1)] hover:shadow-[inset_0_0_20px_rgba(124,58,237,0.3)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined">fort</span>
+                        Enter Guild Hall
+                    </button>
+</div>
+</div>
+<!-- Abstract decorative elements -->
+<div class="absolute top-1/4 left-10 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 right-10 w-96 h-96 bg-warning/10 rounded-full blur-[120px] pointer-events-none"></div>
+</section>
+<!-- App Preview Mockup (Bento Style) -->
+<section class="relative pb-24 -mt-16 z-20">
+<div class="max-w-5xl mx-auto px-margin-desktop">
+<div class="bg-surface border border-border rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden box-glow-primary animate-float-delayed flex flex-col">
+<!-- Mockup Header -->
+<div class="h-12 border-b border-border bg-surface-container-low flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-border"></div>
+<div class="w-3 h-3 rounded-full bg-border"></div>
+<div class="w-3 h-3 rounded-full bg-border"></div>
+</div>
+<div class="mx-auto px-4 py-1 bg-surface-container rounded text-text-muted font-label-sm text-[10px] tracking-widest uppercase">Guild Hall Access Secured</div>
+</div>
+<!-- Mockup Body -->
+<div class="p-8 grid grid-cols-12 gap-6 bg-background-main/50 relative">
+<!-- Sidebar Mock -->
+<div class="col-span-3 space-y-4">
+<div class="flex items-center gap-3 p-3 rounded bg-surface-container-high border-l-2 border-secondary">
+<div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-[18px]">person</span></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-text-main text-[11px]">Level 12 Paladin</span>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-1 overflow-hidden">
+<div class="w-3/4 h-full bg-gradient-to-r from-magic-blue to-primary"></div>
+</div>
+</div>
+</div>
+<div class="space-y-2 pt-4">
+<div class="h-8 rounded bg-surface-container w-full opacity-50"></div>
+<div class="h-8 rounded bg-surface-container w-5/6 opacity-30"></div>
+<div class="h-8 rounded bg-surface-container w-4/6 opacity-30"></div>
+</div>
+</div>
+<!-- Main Content Mock -->
+<div class="col-span-9 space-y-4">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-text-main">Active Quests</h3>
+<p class="font-body-sm text-body-sm text-text-muted">Complete objectives to earn rewards.</p>
+</div>
+<div class="h-8 w-24 rounded bg-primary-container opacity-80"></div>
+</div>
+<!-- Mock Quest Card 1 (Boss) -->
+<div class="bg-card border border-warning/50 rounded-lg p-4 relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.1)]">
+<div class="absolute top-0 right-0 px-3 py-1 bg-warning/20 text-warning font-label-sm text-[10px] rounded-bl-lg">BOSS QUEST</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-warning/10 border border-warning/30 flex items-center justify-center text-warning">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-text-main mb-1">Finish Quarterly Report</h4>
+<p class="font-body-sm text-text-muted text-[12px]">The final boss of Q3 approaches. Defeat it before Friday.</p>
+<div class="flex gap-4 mt-3">
+<span class="flex items-center gap-1 text-[11px] text-primary"><span class="material-symbols-outlined text-[14px]">auto_awesome</span> +500 EXP</span>
+<span class="flex items-center gap-1 text-[11px] text-secondary"><span class="material-symbols-outlined text-[14px]">monetization_on</span> 150 G</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mock Quest Card 2 (Normal) -->
+<div class="bg-card border border-border rounded-lg p-4 relative overflow-hidden">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-info/10 border border-info/30 flex items-center justify-center text-info">
+<span class="material-symbols-outlined">email</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-text-main mb-1">Clear Inbox Zero</h4>
+<div class="flex gap-4 mt-3">
+<span class="flex items-center gap-1 text-[11px] text-primary"><span class="material-symbols-outlined text-[14px]">auto_awesome</span> +100 EXP</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem / Solution Bento Section -->
+<section class="py-24 bg-background-main relative" id="features">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-text-main mb-4 font-bold">The Old Way vs. The Guild Way</h2>
+<p class="font-body-lg text-body-lg text-text-muted max-w-2xl mx-auto">Standard to-do lists drain your energy. We reforge your obligations into epic undertakings.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Problem Card (Standard List) -->
+<div class="col-span-1 md:col-span-5 bg-surface-container-low border border-border rounded-xl p-8 flex flex-col relative overflow-hidden group">
+<div class="absolute inset-0 bg-danger/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-danger text-[28px]">block</span>
+<h3 class="font-headline-sm text-headline-sm text-text-soft">The Mundane Struggle</h3>
+</div>
+<ul class="space-y-4 font-body-md text-text-muted">
+<li class="flex items-start gap-3 opacity-70"><span class="material-symbols-outlined text-[20px] mt-0.5">check_box_outline_blank</span> Tasks scattered everywhere.</li>
+<li class="flex items-start gap-3 opacity-70"><span class="material-symbols-outlined text-[20px] mt-0.5">check_box_outline_blank</span> Deadlines missed due to apathy.</li>
+<li class="flex items-start gap-3 opacity-70"><span class="material-symbols-outlined text-[20px] mt-0.5">check_box_outline_blank</span> Zero sense of progression or reward.</li>
+<li class="flex items-start gap-3 opacity-70"><span class="material-symbols-outlined text-[20px] mt-0.5">check_box_outline_blank</span> Endless, boring lists.</li>
+</ul>
+</div>
+<!-- Solution Centerpiece -->
+<div class="col-span-1 md:col-span-7 bg-card border border-primary/30 rounded-xl p-8 relative overflow-hidden group box-glow-primary hover:-translate-y-1 transition-all duration-500">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-[32px] text-glow-primary">workspace_premium</span>
+<h3 class="font-headline-sm text-headline-sm text-text-main font-bold">The RPG Mechanics Solution</h3>
+</div>
+<p class="font-body-md text-text-soft mb-8">Inject dopamine into your workflow by applying game mechanics to real-life objectives.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface border border-border rounded p-4">
+<span class="material-symbols-outlined text-secondary mb-2">military_tech</span>
+<h4 class="font-label-md text-text-main">Gain EXP</h4>
+<p class="font-body-sm text-text-muted text-[13px] mt-1">Every completed task fills your experience bar.</p>
+</div>
+<div class="bg-surface border border-border rounded p-4">
+<span class="material-symbols-outlined text-magic-blue mb-2">arrow_upward</span>
+<h4 class="font-label-md text-text-main">Level Up</h4>
+<p class="font-body-sm text-text-muted text-[13px] mt-1">Unlock new ranks, titles, and cosmetic rewards.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-24 bg-surface-dim border-t border-border/50">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="bg-card border border-border rounded-xl p-6 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(124,58,237,0.1)] transition-all duration-300">
+<div class="w-12 h-12 rounded bg-surface flex items-center justify-center mb-6 border border-border">
+<span class="material-symbols-outlined text-primary">edit_document</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-2">Create Quests</h3>
+<p class="font-body-sm text-text-muted">Draft detailed mission briefings instead of simple to-dos. Add lore, sub-tasks, and conditions.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-card border border-border rounded-xl p-6 hover:border-warning/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.1)] transition-all duration-300">
+<div class="w-12 h-12 rounded bg-surface flex items-center justify-center mb-6 border border-border">
+<span class="material-symbols-outlined text-warning">timer</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-2">Track Deadlines</h3>
+<p class="font-body-sm text-text-muted">Visualize impending doom (or success) with urgency-based glows and countdowns.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-card border border-border rounded-xl p-6 hover:border-info/50 hover:shadow-[0_0_20px_rgba(56,189,248,0.1)] transition-all duration-300">
+<div class="w-12 h-12 rounded bg-surface flex items-center justify-center mb-6 border border-border">
+<span class="material-symbols-outlined text-info">category</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-2">Manage Categories</h3>
+<p class="font-body-sm text-text-muted">Organize your life into Guild Categories: Work, Health, Personal, and Side-Hustles.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works (Stepper) -->
+<section class="py-24 bg-background-main relative overflow-hidden" id="how-it-works">
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-text-main mb-4 font-bold">The Adventurer's Path</h2>
+<p class="font-body-lg text-body-lg text-text-muted">Four steps to legendary productivity.</p>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 relative">
+<!-- Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-1/2 left-10 right-10 h-0.5 bg-border -z-10 -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center w-full md:w-1/4 relative group">
+<div class="w-16 h-16 rounded-full bg-surface-container border-2 border-border flex items-center justify-center mb-4 group-hover:border-primary transition-colors bg-background-main z-10">
+<span class="material-symbols-outlined text-text-soft group-hover:text-primary transition-colors text-[28px]">add_circle</span>
+</div>
+<h4 class="font-headline-sm text-text-main mb-2">1. Create</h4>
+<p class="font-body-sm text-text-muted px-4">Post a new quest to the board.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center w-full md:w-1/4 relative group">
+<div class="w-16 h-16 rounded-full bg-surface-container border-2 border-border flex items-center justify-center mb-4 group-hover:border-secondary transition-colors bg-background-main z-10">
+<span class="material-symbols-outlined text-text-soft group-hover:text-secondary transition-colors text-[28px]">swords</span>
+</div>
+<h4 class="font-headline-sm text-text-main mb-2">2. Complete</h4>
+<p class="font-body-sm text-text-muted px-4">Slay the task and mark it finished.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center w-full md:w-1/4 relative group">
+<div class="w-16 h-16 rounded-full bg-surface-container border-2 border-border flex items-center justify-center mb-4 group-hover:border-magic-blue transition-colors bg-background-main z-10">
+<span class="material-symbols-outlined text-text-soft group-hover:text-magic-blue transition-colors text-[28px]">auto_awesome</span>
+</div>
+<h4 class="font-headline-sm text-text-main mb-2">3. Gain EXP</h4>
+<p class="font-body-sm text-text-muted px-4">Claim your hard-earned experience.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center text-center w-full md:w-1/4 relative group">
+<div class="w-16 h-16 rounded-full bg-surface-container border-2 border-border flex items-center justify-center mb-4 group-hover:border-success transition-colors bg-background-main z-10 shadow-[0_0_20px_rgba(34,197,94,0)] group-hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+<span class="material-symbols-outlined text-text-soft group-hover:text-success transition-colors text-[28px]">upgrade</span>
+</div>
+<h4 class="font-headline-sm text-text-main mb-2">4. Level Up</h4>
+<p class="font-body-sm text-text-muted px-4">Grow stronger and tackle bigger goals.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-background-main dark:bg-background-main w-full py-8 mt-auto border-t border-border/30 flat">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-4 max-w-container-max mx-auto w-full">
+<!-- Brand / Copyright -->
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-headline-sm text-headline-sm text-text-muted">QuestBoard</span>
+<span class="font-body-sm text-body-sm text-text-muted opacity-80">© 1224 QuestBoard Adventurer's Guild. All rights reserved.</span>
+</div>
+<!-- Links -->
+<div class="flex gap-6 items-center">
+<a class="font-label-sm text-label-sm text-text-muted hover:text-text-main transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-text-muted hover:text-text-main transition-colors opacity-80 hover:opacity-100" href="#">Guild Code</a>
+<a class="font-label-sm text-label-sm text-text-muted hover:text-text-main transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

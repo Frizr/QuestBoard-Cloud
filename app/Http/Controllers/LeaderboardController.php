@@ -16,7 +16,7 @@ class LeaderboardController extends Controller
                 ->orderByDesc('level')
                 ->orderBy('name')
                 ->take(10)
-                ->get(['id', 'name', 'level', 'total_exp']),
+                ->get(['id', 'name', 'level', 'total_exp', 'avatar_path', 'avatar_template']),
         ]);
     }
 }

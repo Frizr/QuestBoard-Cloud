@@ -5,30 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'QuestBoard') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-[#080712] font-sans text-slate-100 antialiased">
-        <div class="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(126,34,206,0.22),_transparent_30%),linear-gradient(180deg,_#080712_0%,_#0d0a18_48%,_#080712_100%)]">
+    <body class="bg-obsidian font-sans text-slate-100 antialiased">
+        <div class="min-h-screen bg-[radial-gradient(circle_at_15%_10%,rgba(109,40,217,0.22),transparent_30%),radial-gradient(circle_at_85%_15%,rgba(251,191,36,0.10),transparent_24%),linear-gradient(180deg,#050816_0%,#0B1020_45%,#050816_100%)]">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="border-b border-white/10 bg-[#0d0a18]/90 shadow-2xl shadow-purple-950/20 backdrop-blur">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+            <main class="min-h-screen md:ml-72">
+                @isset($header)
+                    <header class="border-b border-border/70 bg-panel/65 backdrop-blur-xl">
+                        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                            {{ $header }}
+                        </div>
+                    </header>
+                @endisset
 
-            <!-- Page Content -->
-            <main>
                 {{ $slot }}
             </main>
         </div>

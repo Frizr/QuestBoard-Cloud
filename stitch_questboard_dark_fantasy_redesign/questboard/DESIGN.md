@@ -1,0 +1,508 @@
+---
+name: QuestBoard
+colors:
+  surface: '#1E293B'
+  surface-dim: '#15121b'
+  surface-bright: '#3c3742'
+  surface-container-lowest: '#100d16'
+  surface-container-low: '#1d1a24'
+  surface-container: '#221e28'
+  surface-container-high: '#2c2833'
+  surface-container-highest: '#37333e'
+  on-surface: '#e8dfee'
+  on-surface-variant: '#ccc3d8'
+  inverse-surface: '#e8dfee'
+  inverse-on-surface: '#332f39'
+  outline: '#958da1'
+  outline-variant: '#4a4455'
+  surface-tint: '#d2bbff'
+  primary: '#d2bbff'
+  on-primary: '#3f008e'
+  primary-container: '#7c3aed'
+  on-primary-container: '#ede0ff'
+  inverse-primary: '#732ee4'
+  secondary: '#ffc640'
+  on-secondary: '#402d00'
+  secondary-container: '#e3aa00'
+  on-secondary-container: '#5a4100'
+  tertiary: '#ffb784'
+  on-tertiary: '#4f2500'
+  tertiary-container: '#a15100'
+  on-tertiary-container: '#ffe0cd'
+  error: '#ffb4ab'
+  on-error: '#690005'
+  error-container: '#93000a'
+  on-error-container: '#ffdad6'
+  primary-fixed: '#eaddff'
+  primary-fixed-dim: '#d2bbff'
+  on-primary-fixed: '#25005a'
+  on-primary-fixed-variant: '#5a00c6'
+  secondary-fixed: '#ffdf9f'
+  secondary-fixed-dim: '#f9bd22'
+  on-secondary-fixed: '#261a00'
+  on-secondary-fixed-variant: '#5c4300'
+  tertiary-fixed: '#ffdcc6'
+  tertiary-fixed-dim: '#ffb784'
+  on-tertiary-fixed: '#301400'
+  on-tertiary-fixed-variant: '#713700'
+  background: '#15121b'
+  on-background: '#e8dfee'
+  surface-variant: '#37333e'
+  background-main: '#0B1020'
+  background-secondary: '#111827'
+  card: '#151B2E'
+  border: '#334155'
+  magic-blue: '#38BDF8'
+  gold-dark: '#B45309'
+  success: '#22C55E'
+  warning: '#F59E0B'
+  danger: '#EF4444'
+  info: '#3B82F6'
+  text-main: '#F8FAFC'
+  text-muted: '#94A3B8'
+  text-soft: '#CBD5E1'
+typography:
+  display-hero:
+    fontFamily: Cinzel
+    fontSize: 48px
+    fontWeight: '800'
+    lineHeight: '1.2'
+    letterSpacing: 0.02em
+  headline-lg:
+    fontFamily: Cinzel
+    fontSize: 32px
+    fontWeight: '700'
+    lineHeight: '1.3'
+  headline-md:
+    fontFamily: Cinzel
+    fontSize: 24px
+    fontWeight: '600'
+    lineHeight: '1.4'
+  headline-sm:
+    fontFamily: Cinzel
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: '1.4'
+  body-lg:
+    fontFamily: Inter
+    fontSize: 18px
+    fontWeight: '400'
+    lineHeight: '1.6'
+  body-md:
+    fontFamily: Inter
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: '1.5'
+  body-sm:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: '1.5'
+  label-md:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: '600'
+    lineHeight: '1'
+    letterSpacing: 0.05em
+  label-sm:
+    fontFamily: Inter
+    fontSize: 12px
+    fontWeight: '500'
+    lineHeight: '1'
+  headline-lg-mobile:
+    fontFamily: Cinzel
+    fontSize: 24px
+    fontWeight: '700'
+    lineHeight: '1.3'
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  container-max: 1280px
+  gutter: 1.5rem
+  margin-mobile: 1rem
+  margin-desktop: 2.5rem
+  stack-sm: 0.5rem
+  stack-md: 1rem
+  stack-lg: 2rem
+---
+
+# DESIGN.md — QuestBoard UI/UX Design Guideline
+
+## 1. Project Identity
+
+**Project Name:** QuestBoard
+**Slogan:** Level Up Your Productivity
+**Concept:** RPG Gamified Task Management Web App
+**Platform:** Laravel + Blade + Tailwind CSS
+**Target Users:** General users who want to organize tasks, goals, routines, and responsibilities with a more engaging RPG-style experience.
+
+QuestBoard is not a normal to-do list app. The application should feel like a modern RPG quest board where users become adventurers, tasks become quests, categories become guild sections, completed tasks give EXP, and progress is shown through levels.
+
+---
+
+## 2. UI/UX Main Goal
+
+The current UI must be redesigned because it looks too generic and does not represent the game/RPG concept.
+
+The new UI/UX must communicate:
+
+* RPG quest board atmosphere
+* Adventurer guild dashboard
+* Mission/quest card system
+* EXP and level progression
+* Dark fantasy productivity theme
+* Professional SaaS dashboard quality
+* Clear, readable, responsive interface
+
+The design must not look childish, cartoonish, or like a plain admin dashboard.
+
+---
+
+## 3. Design Theme
+
+### Theme Name
+
+**Dark Fantasy RPG Productivity Dashboard**
+
+### Visual Keywords
+
+* Adventurer Guild
+* Quest Board
+* Mission Log
+* Quest Journal
+* Hall of Heroes
+* EXP Progression
+* Level System
+* Dark Fantasy
+* Magical Glow
+* Gold Reward
+* Modern SaaS
+* Card-based Interface
+
+### Design Mood
+
+The UI should feel like a combination of:
+
+* RPG game mission board
+* fantasy guild dashboard
+* modern productivity web app
+* dark SaaS admin panel
+
+The interface should remain clean, professional, and easy to use.
+
+---
+
+## 4. Color Palette
+
+Use the following color palette consistently.
+
+```text
+Main Background: #0B1020
+Secondary Background: #111827
+Card Background: #151B2E
+Surface Background: #1E293B
+Border Color: #334155
+
+Primary Purple: #7C3AED
+Purple Glow: #8B5CF6
+Magic Blue: #38BDF8
+Gold Accent: #FBBF24
+Gold Dark: #B45309
+
+Success Green: #22C55E
+Warning Orange: #F59E0B
+Danger Red: #EF4444
+Info Blue: #3B82F6
+
+Main Text: #F8FAFC
+Muted Text: #94A3B8
+Soft Text: #CBD5E1
+```
+
+### Color Usage
+
+* Use dark navy as the main background.
+* Use purple for primary buttons, active navigation, and magical accents.
+* Use gold for rewards, EXP, level highlights, and Boss Quest elements.
+* Use blue for in-progress or normal difficulty.
+* Use green for completed/success states.
+* Use red for overdue/danger states.
+* Avoid plain white backgrounds.
+
+---
+
+## 5. Typography
+
+Use two font styles:
+
+### Heading Font
+
+Use a fantasy-inspired or futuristic display font:
+
+* Cinzel
+* Unbounded
+* Orbitron
+
+Recommended: **Cinzel**
+
+Use heading font for:
+
+* QuestBoard logo text
+* page titles
+* hero title
+* RPG section titles
+* leaderboard title
+* level display
+
+### Body Font
+
+Use a clean readable font:
+
+* Inter
+* Poppins
+* Manrope
+
+Recommended: **Inter**
+
+Use body font for:
+
+* paragraphs
+* forms
+* tables
+* cards
+* navigation
+* buttons
+
+### Example Font Import
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+```
+
+---
+
+## 6. Global Layout Direction
+
+The whole application should use a consistent dark RPG interface.
+
+### Global Requirements
+
+* Dark background on all pages.
+* Card-based layout.
+* Rounded cards with subtle borders.
+* Soft glow effects on important elements.
+* Consistent navigation.
+* Responsive layout for desktop, tablet, and mobile.
+* Clean spacing and visual hierarchy.
+* No default Laravel Breeze plain white look.
+* No generic Bootstrap-like admin panel.
+* No unnecessary clutter.
+
+### Background Style
+
+Use a combination of:
+
+* dark gradient background
+* subtle radial glow
+* faint grid pattern
+* subtle stars/particles if possible with CSS
+* decorative fantasy-like borders only when not disturbing readability
+
+Example Tailwind direction:
+
+```html
+<body class="min-h-screen bg-[#0B1020] text-slate-100 antialiased">
+```
+
+---
+
+## 7. Navigation Design
+
+### Authenticated Navigation
+
+Navigation items:
+
+* Dashboard
+* Quests
+* Categories
+* Leaderboard
+* Profile
+* Logout
+
+### Navigation Style
+
+The navbar should feel like a guild menu.
+
+Design:
+
+* dark translucent background
+* border bottom
+* active route highlight with purple/gold accent
+* hover glow effect
+* responsive mobile menu
+
+### Suggested Labels
+
+Use more RPG-like labels visually, but do not break route names.
+
+| Current Menu | Visual Label       |
+| ------------ | ------------------ |
+| Dashboard    | Guild Hall         |
+| Quests       | Quest Log          |
+| Categories   | Guild Categories   |
+| Leaderboard  | Hall of Heroes     |
+| Profile      | Adventurer Profile |
+
+---
+
+## 8. Landing Page Design
+
+### Goal
+
+The landing page must immediately show that QuestBoard is an RPG-themed productivity app.
+
+### Hero Section
+
+Content:
+
+```text
+QuestBoard
+Level Up Your Productivity
+Turn your daily tasks into RPG-style quests. Complete missions, gain EXP, and level up your life.
+```
+
+CTA buttons:
+
+* Start Your Journey
+* Enter Guild Hall
+
+Visual direction:
+
+* large fantasy-style title
+* purple glow background
+* gold accent elements
+* dashboard preview mockup
+* quest card mockup
+* dark magical background
+
+---
+
+## 9. Dashboard Design
+
+### Page Name
+
+Use visual heading:
+
+```text
+Guild Hall
+Welcome back, Adventurer
+```
+
+### Dashboard Components
+
+The dashboard must show:
+
+* Current Level
+* Total EXP
+* EXP progress bar
+* Total Quests
+* Pending Quests
+* In Progress Quests
+* Completed Quests
+* Overdue Quests
+* Recent Quests
+* Upcoming Deadlines
+
+---
+
+## 10. Quest List Design
+
+### Page Name
+
+Use visual heading:
+
+```text
+Quest Log
+Manage your active missions and daily objectives.
+```
+
+### Quest List Layout
+
+Prefer card layout over plain table.
+
+Each quest card should display:
+
+* Quest title
+* Category
+* Difficulty badge
+* Status badge
+* Deadline
+* Reward EXP
+* Action buttons
+
+---
+
+## 11. Difficulty Badge Design
+
+Use clear visual identity for each difficulty.
+
+| Difficulty | Color Direction | Visual Feeling  |
+| ---------- | --------------- | --------------- |
+| Easy       | Green           | Light task      |
+| Normal     | Blue            | Standard quest  |
+| Hard       | Orange          | Challenging     |
+| Epic       | Purple          | Rare/high-value |
+| Boss       | Gold + Red Glow | Major mission   |
+
+---
+
+## 12. Status Badge Design
+
+| Status      | Color        | Meaning          |
+| ----------- | ------------ | ---------------- |
+| Pending     | Slate/Yellow | Waiting          |
+| In Progress | Blue         | Currently active |
+| Completed   | Green        | Finished         |
+| Overdue     | Red          | Deadline missed  |
+
+---
+
+## 19. Button Design
+
+### Primary Button
+
+Use for main actions:
+
+* Start Journey
+* Create Quest
+* Update Quest
+* Save Category
+
+Style:
+
+* purple background
+* light text
+* hover glow
+* rounded corners
+
+### Secondary Button
+
+Use for navigation/back actions:
+
+* dark surface
+* border
+* muted text
+* hover border purple
+
+### Gold Button
+
+Use only for special RPG CTA:
+
+* Start Your Journey
+* Boss Quest
+* EXP reward action

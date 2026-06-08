@@ -1,83 +1,89 @@
 <x-app-layout>
-    @php
-        $difficultyClasses = [
-            'easy' => 'border-emerald-300/30 bg-emerald-500/15 text-emerald-100',
-            'normal' => 'border-sky-300/30 bg-sky-500/15 text-sky-100',
-            'hard' => 'border-purple-300/30 bg-purple-500/15 text-purple-100',
-            'epic' => 'border-amber-300/50 bg-amber-300/15 text-amber-100',
-            'boss' => 'border-red-300/40 bg-red-500/15 text-red-100',
-        ];
-    @endphp
-
     <x-slot name="header">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Quest Detail</p>
-                <h1 class="mt-2 text-2xl font-black text-white sm:text-3xl">{{ $quest->title }}</h1>
+                <p class="qb-section-kicker">Mission Briefing</p>
+                <h1 class="mt-2 qb-heading text-3xl sm:text-4xl">Quest Briefing</h1>
+                <p class="mt-2 text-base text-slate-400">Review contract terms, reward, deadline, and current status.</p>
             </div>
-            <div class="flex gap-2">
-                <a href="{{ route('quests.edit', $quest) }}" class="rounded-md bg-purple-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-purple-400">Edit</a>
-                <a href="{{ route('quests.index') }}" class="rounded-md border border-white/10 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-white/10">Back</a>
+            <div class="flex flex-wrap gap-2">
+                <a href="{{ route('quests.index') }}" class="qb-secondary">Back to Quest Log</a>
+                <a href="{{ route('quests.edit', $quest) }}" class="qb-primary">Edit Quest</a>
             </div>
         </div>
     </x-slot>
 
-    <div class="px-4 py-8 sm:px-6 lg:px-8">
-        <div class="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[1fr_320px]">
-            <section class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-6 shadow-xl shadow-purple-950/20">
-                @if (session('status'))
-                    <div class="mb-5 rounded-md border border-emerald-300/30 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-emerald-100">
-                        {{ session('status') }}
+    <div class="qb-page-shell">
+        <div class="mx-auto max-w-6xl space-y-6">
+            @if (session('status'))
+                <div class="rounded-md border border-emerald-400/30 bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-emerald-100">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <article class="qb-panel overflow-hidden">
+                <div class="relative min-h-56 border-b border-border bg-[radial-gradient(circle_at_25%_20%,rgba(109,40,217,0.36),transparent_30%),linear-gradient(135deg,#15111d_0%,#172033_55%,#0B1020_100%)] p-6 sm:p-8">
+                    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-card to-transparent"></div>
+                    <div class="relative">
+                        <div class="flex flex-wrap gap-2">
+                            @if ($quest->isOverdue())
+                                <x-status-badge value="overdue" overdue />
+                            @endif
+                            <x-difficulty-badge :value="$quest->difficulty" :labels="$difficulties" />
+                            <x-status-badge :value="$quest->status" :labels="$statuses" />
+                        </div>
+                        <h2 class="mt-8 max-w-4xl break-words font-display text-4xl font-extrabold text-violet-100 qb-title-glow sm:text-5xl">
+                            {{ $quest->title }}
+                        </h2>
                     </div>
-                @endif
-
-                <div class="flex flex-wrap gap-2">
-                    @if ($quest->isOverdue())
-                        <span class="rounded-full border border-red-300/40 bg-red-500/15 px-2.5 py-1 text-xs font-bold text-red-100">Overdue</span>
-                    @endif
-                    <span class="rounded-full border px-2.5 py-1 text-xs font-bold {{ $difficultyClasses[$quest->difficulty] }}">
-                        {{ $difficulties[$quest->difficulty] }}
-                    </span>
-                    <span class="rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-xs font-bold text-slate-200">
-                        {{ $statuses[$quest->status] }}
-                    </span>
                 </div>
 
-                <div class="mt-6 max-w-none">
-                    <p class="whitespace-pre-line text-slate-300">{{ $quest->description ?: 'No briefing provided for this quest.' }}</p>
-                </div>
-            </section>
+                <div class="grid gap-0 lg:grid-cols-[1fr_360px]">
+                    <section class="p-6 sm:p-8">
+                        <p class="qb-section-kicker">Quest Briefing</p>
+                        <div class="mt-5 whitespace-pre-line text-base leading-8 text-slate-300">
+                            {{ $quest->description ?: 'No briefing provided for this quest.' }}
+                        </div>
+                    </section>
 
-            <aside class="space-y-4">
-                <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-5 shadow-xl shadow-purple-950/20">
-                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Reward</p>
-                    <p class="mt-2 text-4xl font-black text-amber-200">{{ $quest->reward_exp }}</p>
-                    <p class="text-sm text-slate-400">EXP</p>
+                    <aside class="border-t border-border bg-obsidian/30 p-6 lg:border-l lg:border-t-0 sm:p-8">
+                        <div class="rounded-lg border border-royal/30 bg-royal/10 p-5">
+                            <p class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Reward</p>
+                            <p class="mt-3 font-display text-5xl font-bold text-royal qb-gold-glow">{{ $quest->reward_exp }}</p>
+                            <p class="text-sm text-slate-400">EXP</p>
+                        </div>
+
+                        <dl class="mt-6 space-y-4 text-sm">
+                            <div class="rounded-md border border-border bg-panel/60 p-4">
+                                <dt class="font-bold uppercase tracking-wide text-slate-500">Category</dt>
+                                <dd class="mt-1 text-slate-200">{{ $quest->category?->name ?? 'Uncategorized' }}</dd>
+                            </div>
+                            <div class="rounded-md border border-border bg-panel/60 p-4">
+                                <dt class="font-bold uppercase tracking-wide text-slate-500">Difficulty</dt>
+                                <dd class="mt-2"><x-difficulty-badge :value="$quest->difficulty" :labels="$difficulties" /></dd>
+                            </div>
+                            <div class="rounded-md border border-border bg-panel/60 p-4">
+                                <dt class="font-bold uppercase tracking-wide text-slate-500">Status</dt>
+                                <dd class="mt-2"><x-status-badge :value="$quest->status" :labels="$statuses" /></dd>
+                            </div>
+                            <div class="rounded-md border border-border bg-panel/60 p-4">
+                                <dt class="font-bold uppercase tracking-wide text-slate-500">Deadline</dt>
+                                <dd class="mt-1 text-slate-200">{{ $quest->deadline ? $quest->deadline->format('M d, Y H:i') : 'No deadline' }}</dd>
+                            </div>
+                            <div class="rounded-md border border-border bg-panel/60 p-4">
+                                <dt class="font-bold uppercase tracking-wide text-slate-500">Completed At</dt>
+                                <dd class="mt-1 text-slate-200">{{ $quest->completed_at ? $quest->completed_at->format('M d, Y H:i') : 'Pending' }}</dd>
+                            </div>
+                        </dl>
+
+                        <form method="POST" action="{{ route('quests.destroy', $quest) }}" class="mt-6" onsubmit="return confirm('Delete this quest?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="qb-danger w-full">Delete Quest</button>
+                        </form>
+                    </aside>
                 </div>
-                <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-5 shadow-xl shadow-purple-950/20">
-                    <dl class="space-y-4 text-sm">
-                        <div>
-                            <dt class="font-bold uppercase tracking-wide text-slate-500">Category</dt>
-                            <dd class="mt-1 text-slate-200">{{ $quest->category?->name ?? 'Uncategorized' }}</dd>
-                        </div>
-                        <div>
-                            <dt class="font-bold uppercase tracking-wide text-slate-500">Deadline</dt>
-                            <dd class="mt-1 text-slate-200">{{ $quest->deadline ? $quest->deadline->format('M d, Y H:i') : 'No deadline' }}</dd>
-                        </div>
-                        <div>
-                            <dt class="font-bold uppercase tracking-wide text-slate-500">Completed at</dt>
-                            <dd class="mt-1 text-slate-200">{{ $quest->completed_at ? $quest->completed_at->format('M d, Y H:i') : '-' }}</dd>
-                        </div>
-                    </dl>
-                </div>
-                <form method="POST" action="{{ route('quests.destroy', $quest) }}" onsubmit="return confirm('Delete this quest?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="w-full rounded-md border border-red-300/30 bg-red-500/10 px-4 py-2.5 text-sm font-bold text-red-100 transition hover:bg-red-500/20">
-                        Delete Quest
-                    </button>
-                </form>
-            </aside>
+            </article>
         </div>
     </div>
 </x-app-layout>

@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -59,6 +61,63 @@ class ProfileTest extends TestCase
             ->assertRedirect('/profile');
 
         $this->assertNotNull($user->refresh()->email_verified_at);
+    }
+
+    public function test_profile_photo_can_be_uploaded(): void
+    {
+        Storage::fake('public');
+
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => 'Portrait User',
+                'email' => 'portrait@example.com',
+                'avatar' => UploadedFile::fake()->image('portrait.jpg', 300, 300),
+                'avatar_template' => 'iron-paladin',
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $user->refresh();
+
+        $this->assertSame('Portrait User', $user->name);
+        $this->assertSame('iron-paladin', $user->avatar_template);
+        $this->assertNotNull($user->avatar_path);
+        Storage::disk('public')->assertExists($user->avatar_path);
+    }
+
+    public function test_uploaded_profile_photo_can_be_removed(): void
+    {
+        Storage::fake('public');
+        Storage::disk('public')->put('avatars/old-portrait.jpg', 'old portrait');
+
+        $user = User::factory()->create([
+            'avatar_path' => 'avatars/old-portrait.jpg',
+            'avatar_template' => 'shadow-mage',
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar_template' => 'moon-ranger',
+                'remove_avatar' => '1',
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $user->refresh();
+
+        $this->assertNull($user->avatar_path);
+        $this->assertSame('moon-ranger', $user->avatar_template);
+        Storage::disk('public')->assertMissing('avatars/old-portrait.jpg');
     }
 
     public function test_user_can_delete_their_account(): void

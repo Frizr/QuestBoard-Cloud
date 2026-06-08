@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create New Quest - QuestBoard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#332f39",
+                        "text-muted": "#94A3B8",
+                        "surface-container-highest": "#37333e",
+                        "on-background": "#e8dfee",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-surface-variant": "#ccc3d8",
+                        "text-soft": "#CBD5E1",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#221e28",
+                        "on-primary": "#3f008e",
+                        "error-container": "#93000a",
+                        "danger": "#EF4444",
+                        "inverse-surface": "#e8dfee",
+                        "outline": "#958da1",
+                        "primary-container": "#7c3aed",
+                        "background-secondary": "#111827",
+                        "warning": "#F59E0B",
+                        "surface-container-lowest": "#100d16",
+                        "border": "#334155",
+                        "secondary-fixed-dim": "#f9bd22",
+                        "tertiary": "#ffb784",
+                        "text-main": "#F8FAFC",
+                        "on-secondary-fixed": "#261a00",
+                        "info": "#3B82F6",
+                        "surface-bright": "#3c3742",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-tertiary-container": "#ffe0cd",
+                        "on-secondary": "#402d00",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "background-main": "#0B1020",
+                        "on-primary-container": "#ede0ff",
+                        "inverse-primary": "#732ee4",
+                        "primary-fixed": "#eaddff",
+                        "on-surface": "#e8dfee",
+                        "background": "#15121b",
+                        "success": "#22C55E",
+                        "primary-fixed-dim": "#d2bbff",
+                        "tertiary-container": "#a15100",
+                        "on-secondary-fixed-variant": "#5c4300",
+                        "gold-dark": "#B45309",
+                        "outline-variant": "#4a4455",
+                        "secondary-fixed": "#ffdf9f",
+                        "magic-blue": "#38BDF8",
+                        "surface": "#1E293B",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#d2bbff",
+                        "on-primary-fixed": "#25005a",
+                        "on-tertiary": "#4f2500",
+                        "primary": "#d2bbff",
+                        "card": "#151B2E",
+                        "secondary-container": "#e3aa00",
+                        "surface-dim": "#15121b",
+                        "on-secondary-container": "#5a4100",
+                        "surface-container-high": "#2c2833",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-variant": "#37333e",
+                        "surface-container-low": "#1d1a24",
+                        "on-tertiary-fixed": "#301400",
+                        "secondary": "#ffc640"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Cinzel"],
+                        "display-hero": ["Cinzel"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Cinzel"],
+                        "headline-sm": ["Cinzel"],
+                        "headline-md": ["Cinzel"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "display-hero": ["48px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for deep dark fantasy feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1020; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a4455; 
+        }
+        
+        /* Subtle glow animation for inputs on focus */
+        .input-glow:focus-within {
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.15);
+        }
+        
+        /* Contract background pattern */
+        .bg-contract-pattern {
+            background-image: radial-gradient(circle at center, rgba(124, 58, 237, 0.03) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-main text-text-main min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden">
+<!-- Decorative ambient glow -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-primary-container/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+<!-- Minimal Header for Task Page (Suppressed Main Nav) -->
+<header class="w-full px-margin-mobile md:px-margin-desktop py-6 flex items-center justify-between z-10 relative border-b border-border/30 backdrop-blur-sm">
+<button class="flex items-center gap-2 text-text-muted hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-label-md text-label-md">Abandon Contract</span>
+</button>
+<div class="font-headline-sm text-headline-sm text-text-soft opacity-50 tracking-widest uppercase">QuestBoard</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-margin-mobile md:p-margin-desktop z-10 relative">
+<!-- Contract Form Container -->
+<div class="w-full max-w-3xl bg-card border border-border/50 rounded-xl shadow-2xl relative overflow-hidden backdrop-blur-md bg-contract-pattern">
+<!-- Magical Top Edge -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-70"></div>
+<div class="p-8 md:p-12">
+<!-- Header -->
+<div class="mb-10 text-center">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2 tracking-wide">Create New Quest</h1>
+<p class="font-body-md text-body-md text-text-muted">Draft a new mission for the guild. Specify terms, rewards, and danger levels.</p>
+</div>
+<!-- Form -->
+<form class="space-y-stack-lg">
+<!-- Quest Title -->
+<div class="space-y-stack-sm group input-glow transition-shadow duration-300 rounded-lg">
+<label class="block font-label-md text-label-md text-text-soft flex items-center gap-2" for="quest-title">
+<span class="material-symbols-outlined text-sm opacity-70">edit_document</span>
+                            Quest Title
+                        </label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder:text-text-muted/50 focus:outline-none focus:border-inverse-primary focus:ring-1 focus:ring-inverse-primary transition-all font-body-md text-body-md shadow-inner" id="quest-title" name="quest-title" placeholder="e.g., Slay the Abyssal Drake" type="text"/>
+</div>
+<!-- Description -->
+<div class="space-y-stack-sm group input-glow transition-shadow duration-300 rounded-lg">
+<label class="block font-label-md text-label-md text-text-soft flex items-center gap-2" for="quest-description">
+<span class="material-symbols-outlined text-sm opacity-70">subject</span>
+                            Detailed Briefing
+                        </label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder:text-text-muted/50 focus:outline-none focus:border-inverse-primary focus:ring-1 focus:ring-inverse-primary transition-all font-body-md text-body-md shadow-inner resize-y min-h-[120px]" id="quest-description" name="quest-description" placeholder="Describe the objectives, known hazards, and location details..." rows="4"></textarea>
+</div>
+<!-- Grid for smaller inputs -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Category -->
+<div class="space-y-stack-sm group input-glow transition-shadow duration-300 rounded-lg">
+<label class="block font-label-md text-label-md text-text-soft flex items-center gap-2" for="quest-category">
+<span class="material-symbols-outlined text-sm opacity-70">category</span>
+                                Category
+                            </label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface appearance-none focus:outline-none focus:border-inverse-primary focus:ring-1 focus:ring-inverse-primary transition-all font-body-md text-body-md shadow-inner cursor-pointer" id="quest-category" name="quest-category">
+<option disabled="" selected="" value="">Select discipline...</option>
+<option value="combat">Combat &amp; Subjugation</option>
+<option value="gathering">Resource Gathering</option>
+<option value="exploration">Recon &amp; Exploration</option>
+<option value="diplomacy">Diplomatic Envoy</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Difficulty -->
+<div class="space-y-stack-sm group input-glow transition-shadow duration-300 rounded-lg">
+<label class="block font-label-md text-label-md text-text-soft flex items-center gap-2" for="quest-difficulty">
+<span class="material-symbols-outlined text-sm opacity-70">swords</span>
+                                Threat Level
+                            </label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface appearance-none focus:outline-none focus:border-inverse-primary focus:ring-1 focus:ring-inverse-primary transition-all font-body-md text-body-md shadow-inner cursor-pointer" id="quest-difficulty" name="quest-difficulty">
+<option disabled="" selected="" value="">Assess danger...</option>
+<option value="easy">Rank D (Easy)</option>
+<option value="normal">Rank C (Normal)</option>
+<option value="hard">Rank B (Hard)</option>
+<option value="epic">Rank A (Epic)</option>
+<option value="boss">Rank S (Boss Alert)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Status -->
+<div class="space-y-stack-sm group input-glow transition-shadow duration-300 rounded-lg">
+<label class="block font-label-md text-label-md text-text-soft flex items-center gap-2" for="quest-status">
+<span class="material-symbols-outlined text-sm opacity-70">pending_actions</span>
+                                Initial Status
+                            </label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface appearance-none focus:outline-none focus:border-inverse-primary focus:ring-1 focus:ring-inverse-primary transition-all font-body-md text-body-md shadow-inner cursor-pointer" id="quest-status" name="quest-status">
+<option selected="" value="open">Open on Board</option>
+<option value="draft">Draft (Hidden)</option>
+<option value="assigned">Assigned Immediately</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Deadline -->
+<div class="space-y-stack-sm group input-glow transition-shadow duration-300 rounded-lg">
+<label class="block font-label-md text-label-md text-text-soft flex items-center gap-2" for="quest-deadline">
+<span class="material-symbols-outlined text-sm opacity-70">hourglass_empty</span>
+                                Completion Deadline
+                            </label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-inverse-primary focus:ring-1 focus:ring-inverse-primary transition-all font-body-md text-body-md shadow-inner cursor-pointer color-scheme-dark" id="quest-deadline" name="quest-deadline" type="date"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-8 mt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-end gap-4">
+<button class="w-full md:w-auto px-6 py-3 rounded-lg border border-border text-text-muted font-label-md text-label-md hover:border-inverse-primary hover:text-inverse-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-border" type="button">
+                            Save as Draft
+                        </button>
+<button class="w-full md:w-auto px-8 py-3 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold hover:bg-inverse-primary hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(124,58,237,0.2)] hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-container flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">contract</span>
+                            Post to Guild Board
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</main>
+<style>
+        /* Force dark theme for date picker calendar icon in supported browsers */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1) opacity(0.7);
+            cursor: pointer;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            filter: invert(1) opacity(1);
+        }
+    </style>
+</body></html>

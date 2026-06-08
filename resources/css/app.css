@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: #050816;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+@layer components {
+    .qb-page-shell {
+        @apply mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8;
+    }
+
+    .qb-panel {
+        @apply rounded-lg border border-border/80 bg-card/80 shadow-2xl shadow-black/30;
+        background-image:
+            linear-gradient(135deg, rgba(139, 92, 246, 0.08), transparent 38%),
+            linear-gradient(180deg, rgba(251, 191, 36, 0.05), transparent 56%);
+    }
+
+    .qb-panel-soft {
+        @apply rounded-lg border border-white/10 bg-surface/55 shadow-xl shadow-black/20;
+        background-image: linear-gradient(145deg, rgba(56, 189, 248, 0.06), transparent 34%);
+    }
+
+    .qb-section-kicker {
+        @apply text-xs font-extrabold uppercase tracking-[0.2em] text-royal;
+    }
+
+    .qb-heading {
+        @apply font-display font-bold text-slate-50;
+    }
+
+    .qb-field {
+        @apply mt-2 block w-full rounded-md border-border bg-[#16131f] text-slate-100 placeholder:text-slate-500 shadow-inner shadow-black/20 focus:border-violet focus:ring-violet;
+    }
+
+    .qb-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-violet/30 bg-violet px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-violet/25 transition hover:-translate-y-0.5 hover:bg-arcane hover:shadow-arcane focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2 focus:ring-offset-obsidian;
+    }
+
+    .qb-gold {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-royal/50 bg-gradient-to-r from-royal to-bronze px-5 py-2.5 text-sm font-extrabold text-[#1A1206] shadow-lg shadow-royal/20 transition hover:-translate-y-0.5 hover:shadow-gold focus:outline-none focus:ring-2 focus:ring-royal focus:ring-offset-2 focus:ring-offset-obsidian;
+    }
+
+    .qb-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-border bg-panel/80 px-5 py-2.5 text-sm font-bold text-slate-200 transition hover:-translate-y-0.5 hover:border-violet/60 hover:bg-surface focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2 focus:ring-offset-obsidian;
+    }
+
+    .qb-danger {
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-crimson/50 bg-crimson/15 px-5 py-2.5 text-sm font-bold text-red-100 transition hover:-translate-y-0.5 hover:bg-crimson/25 focus:outline-none focus:ring-2 focus:ring-crimson focus:ring-offset-2 focus:ring-offset-obsidian;
+    }
+
+    .qb-title-glow {
+        text-shadow: 0 0 18px rgba(139, 92, 246, 0.42);
+    }
+
+    .qb-gold-glow {
+        text-shadow: 0 0 18px rgba(251, 191, 36, 0.42);
+    }
+}

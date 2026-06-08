@@ -28,20 +28,20 @@ class DatabaseSeeder extends Seeder
         );
 
         $categories = collect([
-            ['name' => 'Work', 'color' => '#7C3AED'],
-            ['name' => 'Study', 'color' => '#3B82F6'],
-            ['name' => 'Personal', 'color' => '#22C55E'],
-            ['name' => 'Health', 'color' => '#EF4444'],
-            ['name' => 'Finance', 'color' => '#F59E0B'],
-            ['name' => 'Home', 'color' => '#14B8A6'],
-            ['name' => 'Hobby', 'color' => '#EC4899'],
-            ['name' => 'Project', 'color' => '#FBBF24'],
-            ['name' => 'Gaming', 'color' => '#A855F7'],
-            ['name' => 'Other', 'color' => '#94A3B8'],
+            ['name' => 'Work', 'color' => '#7C3AED', 'emblem' => 'shield'],
+            ['name' => 'Study', 'color' => '#3B82F6', 'emblem' => 'book'],
+            ['name' => 'Personal', 'color' => '#22C55E', 'emblem' => 'star'],
+            ['name' => 'Health', 'color' => '#EF4444', 'emblem' => 'flame'],
+            ['name' => 'Finance', 'color' => '#F59E0B', 'emblem' => 'crown'],
+            ['name' => 'Home', 'color' => '#14B8A6', 'emblem' => 'shield'],
+            ['name' => 'Hobby', 'color' => '#EC4899', 'emblem' => 'star'],
+            ['name' => 'Project', 'color' => '#FBBF24', 'emblem' => 'hammer'],
+            ['name' => 'Gaming', 'color' => '#A855F7', 'emblem' => 'sword'],
+            ['name' => 'Other', 'color' => '#94A3B8', 'emblem' => 'compass'],
         ])->mapWithKeys(function (array $category) use ($user) {
             $model = $user->categories()->updateOrCreate(
                 ['name' => $category['name']],
-                ['color' => $category['color']],
+                ['color' => $category['color'], 'emblem' => $category['emblem']],
             );
 
             return [$category['name'] => $model];

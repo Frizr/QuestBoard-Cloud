@@ -6,207 +6,224 @@
 
         <title>{{ config('app.name', 'QuestBoard') }}</title>
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen bg-[#080712] font-sans text-white antialiased">
-        <main class="relative isolate min-h-screen overflow-hidden">
-            <img
-                src="{{ asset('images/questboard-hero.png') }}"
-                alt=""
-                class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-            >
-            <div class="absolute inset-0 -z-10 bg-[#080712]/70"></div>
-            <div class="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#080712] to-transparent"></div>
+    <body class="min-h-screen bg-obsidian font-sans text-slate-100 antialiased">
+        <main class="overflow-hidden">
+            <section class="relative isolate min-h-[94vh] overflow-hidden bg-[radial-gradient(circle_at_20%_20%,rgba(109,40,217,0.35),transparent_28%),radial-gradient(circle_at_80%_28%,rgba(251,191,36,0.14),transparent_26%),linear-gradient(180deg,#050816_0%,#0B1020_68%,#050816_100%)]">
+                <img src="{{ asset('videos/questboard-bg.svg') }}" alt="" class="absolute inset-0 -z-40 h-full w-full object-cover">
+                <video class="absolute inset-0 -z-30 h-full w-full object-cover opacity-55" autoplay muted loop playsinline poster="{{ asset('videos/questboard-bg.svg') }}">
+                    <source src="{{ asset('videos/questboard-bg.webm') }}" type="video/webm">
+                    <source src="{{ asset('videos/questboard-bg.mp4') }}" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 -z-20 bg-obsidian/70"></div>
+                <div class="absolute inset-x-0 bottom-0 -z-10 h-56 bg-gradient-to-t from-obsidian via-obsidian/80 to-transparent"></div>
 
-            <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-6 lg:px-8">
-                <a href="{{ url('/') }}" class="flex items-center gap-3">
-                    <span class="grid h-10 w-10 place-items-center rounded-md border border-amber-300/40 bg-purple-950/60 text-lg font-black text-amber-300 shadow-lg shadow-purple-950/30">
-                        Q
-                    </span>
-                    <span class="text-lg font-semibold tracking-wide text-white">QuestBoard</span>
-                </a>
+                <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-6 lg:px-8">
+                    <a href="{{ url('/') }}" class="flex items-center gap-3">
+                        <span class="grid h-11 w-11 place-items-center rounded-md border border-royal/50 bg-violet/20 font-display text-xl font-bold text-royal shadow-gold">Q</span>
+                        <span class="font-display text-xl font-bold text-white">QuestBoard</span>
+                    </a>
 
-                @if (Route::has('login'))
-                    <div class="flex items-center gap-2 text-sm font-semibold">
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="rounded-md border border-amber-300/40 bg-amber-300 px-4 py-2 text-[#171023] shadow-lg shadow-amber-500/10 transition hover:bg-amber-200">
-                                Open Board
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}" class="rounded-md px-4 py-2 text-slate-200 transition hover:bg-white/10 hover:text-white">
-                                Log in
-                            </a>
-
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="rounded-md border border-amber-300/40 bg-amber-300 px-4 py-2 text-[#171023] shadow-lg shadow-amber-500/10 transition hover:bg-amber-200">
-                                    Register
+                    @if (Route::has('login'))
+                        <div class="flex items-center gap-2 text-sm font-bold">
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="qb-gold px-4 py-2">Enter Guild Hall</a>
+                            @else
+                                <a href="{{ route('login') }}" class="hidden rounded-md px-4 py-2 text-slate-200 transition hover:bg-white/10 hover:text-white sm:inline-flex">
+                                    Enter Guild Hall
                                 </a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-            </nav>
 
-            <section class="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-20 pt-16 sm:px-6 sm:pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-28 lg:pt-28">
-                <div class="max-w-3xl">
-                    <div class="inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-950/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-200 shadow-lg shadow-purple-950/30">
-                        Mission Control for Focused Work
-                    </div>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="qb-gold px-4 py-2">
+                                        Start Your Journey
+                                    </a>
+                                @endif
+                            @endauth
+                        </div>
+                    @endif
+                </nav>
 
-                    <h1 class="mt-6 text-4xl font-black leading-tight text-white sm:text-6xl lg:text-7xl">
-                        Turn every task into a quest worth finishing.
-                    </h1>
-
-                    <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                        QuestBoard gives your daily work a polished RPG mission-board flow: capture quests, track priority, move progress, and build momentum through a clear level system.
-                    </p>
-
-                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center rounded-md bg-purple-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-purple-950/40 transition hover:-translate-y-0.5 hover:bg-purple-400">
-                                Enter Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md bg-purple-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-purple-950/40 transition hover:-translate-y-0.5 hover:bg-purple-400">
-                                Start Questing
-                            </a>
-                            <a href="{{ route('login') }}" class="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/15">
-                                Continue Session
-                            </a>
-                        @endauth
-                    </div>
-                </div>
-
-                <div class="rounded-lg border border-white/10 bg-[#120f22]/80 p-4 shadow-2xl shadow-purple-950/40 backdrop-blur md:p-5">
-                    <div class="rounded-md border border-amber-300/20 bg-[#0d0a18] p-4">
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <div>
-                                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">Today&apos;s Board</p>
-                                <h2 class="mt-1 text-xl font-bold text-white">Guild Operations</h2>
-                            </div>
-                            <span class="rounded-full bg-purple-500/20 px-3 py-1 text-xs font-bold text-purple-200 ring-1 ring-purple-300/20">Level 4</span>
+                <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-12 pt-14 sm:px-6 sm:pt-20 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-16 lg:pt-24">
+                    <div class="max-w-3xl">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-royal/25 bg-panel/60 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-royal shadow-gold backdrop-blur">
+                            Adventurer Guild Productivity System
                         </div>
 
-                        <div class="mt-5 grid gap-3">
-                            <div class="rounded-md border border-amber-300/20 bg-amber-300/10 p-4 transition hover:border-amber-200/50">
-                                <div class="flex items-center justify-between gap-3">
-                                    <h3 class="font-semibold text-white">Deploy production build</h3>
-                                    <span class="rounded-full bg-amber-300 px-2.5 py-1 text-xs font-black text-[#171023]">Epic</span>
-                                </div>
-                                <p class="mt-2 text-sm text-slate-300">Verify assets, run migrations, and publish the release notes.</p>
-                            </div>
+                        <h1 class="mt-7 font-display text-5xl font-extrabold leading-tight text-white qb-title-glow sm:text-6xl lg:text-7xl">
+                            <span class="block text-royal qb-gold-glow">QuestBoard</span>
+                            Level Up Your Productivity
+                        </h1>
 
-                            <div class="rounded-md border border-purple-300/20 bg-purple-500/10 p-4 transition hover:border-purple-200/50">
-                                <div class="flex items-center justify-between gap-3">
-                                    <h3 class="font-semibold text-white">Refine dashboard flow</h3>
-                                    <span class="rounded-full bg-purple-400/20 px-2.5 py-1 text-xs font-bold text-purple-100 ring-1 ring-purple-200/20">Active</span>
-                                </div>
-                                <p class="mt-2 text-sm text-slate-300">Move quests across the board and keep the next step obvious.</p>
-                            </div>
-
-                            <div class="rounded-md border border-emerald-300/20 bg-emerald-500/10 p-4 transition hover:border-emerald-200/50">
-                                <div class="flex items-center justify-between gap-3">
-                                    <h3 class="font-semibold text-white">Ship focused session</h3>
-                                    <span class="rounded-full bg-emerald-400/20 px-2.5 py-1 text-xs font-bold text-emerald-100 ring-1 ring-emerald-200/20">Done</span>
-                                </div>
-                                <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-                                    <div class="h-full w-3/4 rounded-full bg-amber-300"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-                <div class="max-w-2xl">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">The Problem</p>
-                    <h2 class="mt-3 text-3xl font-black text-white">Productivity usually feels scattered.</h2>
-                </div>
-                <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-                    @foreach ([
-                        'Tasks are scattered everywhere.',
-                        'Deadlines are often missed.',
-                        'To-do lists feel boring.',
-                        'Progress is hard to measure.',
-                        'Motivation is often low.',
-                    ] as $problem)
-                        <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-5 shadow-xl shadow-purple-950/10">
-                            <p class="text-sm font-semibold leading-6 text-slate-300">{{ $problem }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </section>
-
-            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-                <div class="grid gap-8 rounded-lg border border-purple-300/20 bg-purple-950/40 p-6 shadow-2xl shadow-purple-950/30 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">The Solution</p>
-                        <h2 class="mt-3 text-3xl font-black text-white">QuestBoard turns work into a rewarding loop.</h2>
-                        <p class="mt-4 text-sm leading-7 text-slate-300">
-                            Organize activities into quests, group them by category, track deadlines, gain EXP after completion, and level up through consistent progress.
+                        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+                            Turn your daily tasks into RPG-style quests. Complete missions, gain EXP, and level up your life.
                         </p>
-                    </div>
-                    <div class="grid gap-3 sm:grid-cols-2">
-                        @foreach ([
-                            'Organize activities into quests.',
-                            'Group quests by category.',
-                            'Track progress and deadlines.',
-                            'Gain EXP after completing quests.',
-                            'Level up through productivity.',
-                        ] as $solution)
-                            <div class="rounded-md border border-white/10 bg-[#0F172A]/80 p-4 text-sm font-semibold text-slate-200">
-                                {{ $solution }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </section>
 
-            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-                <div class="max-w-2xl">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Features</p>
-                    <h2 class="mt-3 text-3xl font-black text-white">Everything needed for a clean mission board.</h2>
-                </div>
-                <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    @foreach ([
-                        ['title' => 'Quest CRUD', 'body' => 'Create, edit, delete, filter, and view quest details.'],
-                        ['title' => 'Categories', 'body' => 'Group quests into Work, Study, Health, Projects, and more.'],
-                        ['title' => 'EXP and Level', 'body' => 'Complete quests to gain EXP and raise your level.'],
-                        ['title' => 'Leaderboard', 'body' => 'See top users by total EXP without exposing private data.'],
-                    ] as $feature)
-                        <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-5 shadow-xl shadow-purple-950/10 transition hover:-translate-y-0.5 hover:border-purple-300/30">
-                            <h3 class="font-bold text-white">{{ $feature['title'] }}</h3>
-                            <p class="mt-3 text-sm leading-6 text-slate-400">{{ $feature['body'] }}</p>
+                        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="qb-gold">
+                                    <span>+</span>
+                                    Enter Guild Hall
+                                </a>
+                            @else
+                                <a href="{{ route('register') }}" class="qb-gold">
+                                    <span>+</span>
+                                    Start Your Journey
+                                </a>
+                                <a href="{{ route('login') }}" class="qb-secondary">
+                                    <span>></span>
+                                    Enter Guild Hall
+                                </a>
+                            @endauth
                         </div>
-                    @endforeach
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -inset-6 rounded-full bg-violet/20 blur-3xl"></div>
+                        <div class="relative rounded-lg border border-border bg-card/90 shadow-2xl shadow-black/50 backdrop-blur">
+                            <div class="flex items-center gap-2 border-b border-border bg-[#15111d] px-4 py-3">
+                                <span class="h-2.5 w-2.5 rounded-full bg-crimson"></span>
+                                <span class="h-2.5 w-2.5 rounded-full bg-royal"></span>
+                                <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+                                <span class="ms-auto rounded-md border border-border bg-obsidian/60 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Guild Hall Preview</span>
+                            </div>
+
+                            <div class="grid gap-5 p-5 lg:grid-cols-[180px_1fr]">
+                                <div class="rounded-lg border border-border bg-obsidian/45 p-4">
+                                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Adventurer</p>
+                                    <div class="mt-4 flex items-center gap-3">
+                                        <span class="grid h-12 w-12 place-items-center rounded-full border border-royal/50 bg-royal/10 font-display text-lg font-bold text-royal">12</span>
+                                        <div>
+                                            <p class="font-bold text-white">Level 12</p>
+                                            <p class="text-xs text-slate-400">Paladin</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 h-2 overflow-hidden rounded-full bg-panel">
+                                        <div class="h-full w-3/4 rounded-full bg-gradient-to-r from-frost to-violet"></div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="font-display text-xl font-bold text-white">Active Quests</p>
+                                            <p class="text-sm text-slate-400">Complete objectives to earn rewards.</p>
+                                        </div>
+                                        <span class="rounded-md bg-violet px-5 py-2 text-xs font-bold text-white">New</span>
+                                    </div>
+
+                                    <div class="rounded-lg border border-royal/45 bg-royal/10 p-4 shadow-gold">
+                                        <div class="flex items-start justify-between gap-4">
+                                            <div>
+                                                <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-royal">Boss Quest</p>
+                                                <h3 class="mt-2 font-display text-xl font-bold text-white">Finish Quarterly Report</h3>
+                                                <p class="mt-2 text-sm text-slate-400">The final boss of the week approaches.</p>
+                                            </div>
+                                            <span class="rounded-md border border-royal/40 px-2 py-1 text-xs font-bold text-royal">500 EXP</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="rounded-lg border border-frost/25 bg-frost/10 p-4">
+                                        <div class="flex items-center justify-between gap-4">
+                                            <h3 class="font-display text-lg font-bold text-white">Clear Inbox Zero</h3>
+                                            <span class="rounded-md border border-frost/40 px-2 py-1 text-xs font-bold text-sky-100">Normal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section class="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-                <div class="rounded-lg border border-white/10 bg-[#1E293B]/70 p-6 shadow-xl shadow-purple-950/20 lg:p-8">
-                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">How It Works</p>
-                    <div class="mt-6 grid gap-4 md:grid-cols-4">
-                        @foreach ([
-                            ['step' => '01', 'title' => 'Register', 'body' => 'Create your account and enter the mission board.'],
-                            ['step' => '02', 'title' => 'Create quests', 'body' => 'Add title, category, difficulty, status, and deadline.'],
-                            ['step' => '03', 'title' => 'Complete work', 'body' => 'Finish quests to claim EXP rewards.'],
-                            ['step' => '04', 'title' => 'Level up', 'body' => 'Track progress and climb the leaderboard.'],
-                        ] as $item)
-                            <div class="rounded-md border border-white/10 bg-[#0F172A]/80 p-5">
-                                <p class="text-sm font-black text-amber-300">{{ $item['step'] }}</p>
-                                <h3 class="mt-3 font-bold text-white">{{ $item['title'] }}</h3>
-                                <p class="mt-2 text-sm leading-6 text-slate-400">{{ $item['body'] }}</p>
+            <section class="bg-obsidian px-5 py-16 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl">
+                    <div class="text-center">
+                        <p class="qb-section-kicker">The Guild Way</p>
+                        <h2 class="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">A mission board for real work.</h2>
+                        <p class="mx-auto mt-4 max-w-2xl text-slate-400">QuestBoard keeps task management readable while giving progress, reward, and urgency a stronger visual identity.</p>
+                    </div>
+
+                    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+                        <div class="qb-panel-soft p-6">
+                            <p class="qb-section-kicker text-red-300">The Mundane Struggle</p>
+                            <div class="mt-5 grid gap-3">
+                                @foreach (['Tasks are scattered everywhere.', 'Deadlines are often missed.', 'To-do lists feel boring.', 'Progress is hard to measure.', 'Motivation is often low.'] as $problem)
+                                    <div class="rounded-md border border-border bg-panel/70 p-4 text-sm font-semibold text-slate-400">{{ $problem }}</div>
+                                @endforeach
                             </div>
+                        </div>
+
+                        <div class="qb-panel border-violet/40 p-6 shadow-arcane">
+                            <p class="qb-section-kicker">The RPG Mechanics Solution</p>
+                            <h3 class="mt-3 font-display text-2xl font-bold text-white">Turn obligations into quests with visible rewards.</h3>
+                            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+                                @foreach ([
+                                    ['title' => 'Create Quests', 'body' => 'Draft clear mission briefings with category, difficulty, and deadline.'],
+                                    ['title' => 'Gain EXP', 'body' => 'Completed quests add rewards to your profile.'],
+                                    ['title' => 'Level Up', 'body' => 'Your level reflects consistent progress.'],
+                                    ['title' => 'Hall of Heroes', 'body' => 'Compare top adventurers without exposing private emails.'],
+                                ] as $feature)
+                                    <div class="rounded-md border border-border bg-obsidian/45 p-4">
+                                        <h4 class="font-display font-bold text-white">{{ $feature['title'] }}</h4>
+                                        <p class="mt-2 text-sm leading-6 text-slate-400">{{ $feature['body'] }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-y border-border bg-[#15111d] px-5 py-16 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl">
+                    <div class="grid gap-5 md:grid-cols-3">
+                        @foreach ([
+                            ['title' => 'Quest Contracts', 'body' => 'Create tasks with difficulty, status, category, deadline, and EXP reward.'],
+                            ['title' => 'Guild Divisions', 'body' => 'Group missions into meaningful categories for focused planning.'],
+                            ['title' => 'Adventurer Status', 'body' => 'Track total EXP, level, overdue quests, and active progress from the Guild Hall.'],
+                        ] as $item)
+                            <article class="qb-panel-soft p-6 transition hover:-translate-y-1 hover:border-violet/50">
+                                <span class="grid h-11 w-11 place-items-center rounded-md border border-violet/35 bg-violet/15 font-display font-bold text-violet-100">{{ $loop->iteration }}</span>
+                                <h3 class="mt-6 font-display text-xl font-bold text-white">{{ $item['title'] }}</h3>
+                                <p class="mt-3 text-sm leading-6 text-slate-400">{{ $item['body'] }}</p>
+                            </article>
                         @endforeach
                     </div>
                 </div>
             </section>
 
-            <footer class="border-t border-white/10 px-5 py-8 sm:px-6 lg:px-8">
+            <section class="bg-obsidian px-5 py-16 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl">
+                    <div class="text-center">
+                        <p class="qb-section-kicker">How It Works</p>
+                        <h2 class="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">The Adventurer's Path</h2>
+                    </div>
+                    <div class="mt-10 grid gap-5 md:grid-cols-4">
+                        @foreach ([
+                            ['title' => 'Create', 'body' => 'Post a new quest to the board.'],
+                            ['title' => 'Complete', 'body' => 'Finish the mission and mark it done.'],
+                            ['title' => 'Gain EXP', 'body' => 'Claim rewards based on difficulty.'],
+                            ['title' => 'Level Up', 'body' => 'Build momentum through visible progress.'],
+                        ] as $step)
+                            <article class="text-center">
+                                <div class="mx-auto grid h-16 w-16 place-items-center rounded-full border border-border bg-card font-display text-xl font-bold text-royal shadow-gold">{{ $loop->iteration }}</div>
+                                <h3 class="mt-4 font-display text-lg font-bold text-white">{{ $step['title'] }}</h3>
+                                <p class="mt-2 text-sm leading-6 text-slate-400">{{ $step['body'] }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+
+            <footer class="border-t border-border bg-obsidian px-5 py-8 sm:px-6 lg:px-8">
                 <div class="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-                    <p>QuestBoard - Level Up Your Productivity</p>
-                    <p>Built with Laravel, Breeze, Tailwind CSS, Vite, and MySQL-ready migrations.</p>
+                    <p class="font-display text-slate-400">QuestBoard</p>
+                    <p>Level Up Your Productivity</p>
                 </div>
             </footer>
         </main>

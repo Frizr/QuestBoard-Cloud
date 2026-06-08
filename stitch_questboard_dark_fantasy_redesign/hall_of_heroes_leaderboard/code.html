@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hall of Heroes - QuestBoard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#332f39",
+                        "text-muted": "#94A3B8",
+                        "surface-container-highest": "#37333e",
+                        "on-background": "#e8dfee",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-surface-variant": "#ccc3d8",
+                        "text-soft": "#CBD5E1",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#221e28",
+                        "on-primary": "#3f008e",
+                        "error-container": "#93000a",
+                        "danger": "#EF4444",
+                        "inverse-surface": "#e8dfee",
+                        "outline": "#958da1",
+                        "primary-container": "#7c3aed",
+                        "background-secondary": "#111827",
+                        "warning": "#F59E0B",
+                        "surface-container-lowest": "#100d16",
+                        "border": "#334155",
+                        "secondary-fixed-dim": "#f9bd22",
+                        "tertiary": "#ffb784",
+                        "text-main": "#F8FAFC",
+                        "on-secondary-fixed": "#261a00",
+                        "info": "#3B82F6",
+                        "surface-bright": "#3c3742",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-tertiary-container": "#ffe0cd",
+                        "on-secondary": "#402d00",
+                        "tertiary-fixed-dim": "#ffb784",
+                        "background-main": "#0B1020",
+                        "on-primary-container": "#ede0ff",
+                        "inverse-primary": "#732ee4",
+                        "primary-fixed": "#eaddff",
+                        "on-surface": "#e8dfee",
+                        "background": "#15121b",
+                        "success": "#22C55E",
+                        "primary-fixed-dim": "#d2bbff",
+                        "tertiary-container": "#a15100",
+                        "on-secondary-fixed-variant": "#5c4300",
+                        "gold-dark": "#B45309",
+                        "outline-variant": "#4a4455",
+                        "secondary-fixed": "#ffdf9f",
+                        "magic-blue": "#38BDF8",
+                        "surface": "#1E293B",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#d2bbff",
+                        "on-primary-fixed": "#25005a",
+                        "on-tertiary": "#4f2500",
+                        "primary": "#d2bbff",
+                        "card": "#151B2E",
+                        "secondary-container": "#e3aa00",
+                        "surface-dim": "#15121b",
+                        "on-secondary-container": "#5a4100",
+                        "surface-container-high": "#2c2833",
+                        "on-primary-fixed-variant": "#5a00c6",
+                        "surface-variant": "#37333e",
+                        "surface-container-low": "#1d1a24",
+                        "on-tertiary-fixed": "#301400",
+                        "secondary": "#ffc640"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Cinzel"],
+                        "display-hero": ["Cinzel"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Cinzel"],
+                        "headline-sm": ["Cinzel"],
+                        "headline-md": ["Cinzel"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "display-hero": ["48px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Subtle background glow effect */
+        .bg-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1000px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124,58,237,0.05) 0%, rgba(11,16,32,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-background-main text-on-surface font-body-md min-h-screen flex antialiased">
+<!-- Mobile Top Navigation (md:hidden) -->
+<header class="md:hidden bg-background-main dark:bg-background-main docked full-width top-0 sticky z-50 border-b border-border/50 backdrop-blur-md bg-opacity-80 shadow-[0_0_15px_rgba(124,58,237,0.2)] flex justify-between items-center px-margin-mobile py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined icon-fill text-primary text-2xl">fort</span>
+<span class="font-display-hero text-headline-md text-primary dark:text-primary tracking-wider">QuestBoard</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Desktop Side Navigation (hidden md:flex) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-64 z-40 bg-surface-container-low dark:bg-surface-container-low border-r border-border bg-opacity-95 backdrop-blur-xl shadow-xl flex-col py-8 space-y-2">
+<!-- Brand / Guild Master -->
+<div class="px-6 pb-6 border-b border-border/50 mb-4 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary shadow-[0_0_10px_rgba(124,58,237,0.4)] mb-3 relative">
+<img alt="Guild Master Avatar" class="w-full h-full object-cover" data-alt="A highly detailed digital painting of a mysterious, hooded figure in a dark fantasy setting. The character exudes authority, wearing deep purple and silver armor with subtle magical glowing runes. The lighting is dramatic and cinematic, perfect for a high-end RPG guild master portrait." src="https://lh3.googleusercontent.com/aida/AP1WRLsozmUeY7vPp4qteLY-c4y61Buwou2pf9pzI0LSGZQKOIhK1G1LAosO9ISuiA-IZSNSXvZjUJxyG6BT45hmW_lohoBh-KzFh-ruRZZG1kP7d4F0asgqYxqm6IctF23z7bQYs2kzl2M-okQ6yYNxjS3o2UJvU_sfWglldsmllecEhqa-7FIcJjtI8v5yranwBfDNBs2f1I94ZgOlhzbYMQpMCXDi_boB7Iu3QkaySWu1QSVwEbHls60p1NTW"/>
+</div>
+<h2 class="font-display-hero text-headline-sm text-secondary">Guild Master</h2>
+<p class="font-label-md text-label-md text-text-muted mt-1">Level 42 Paladin</p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto px-2 space-y-1">
+<a class="text-text-muted hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-surface-container-highest/50 hover:pl-6 duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">fort</span>
+<span class="font-label-md text-label-md">Guild Hall</span>
+</a>
+<a class="text-text-muted hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-surface-container-highest/50 hover:pl-6 duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">menu_book</span>
+<span class="font-label-md text-label-md">Quest Log</span>
+</a>
+<a class="text-text-muted hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-surface-container-highest/50 hover:pl-6 duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">reorder</span>
+<span class="font-label-md text-label-md">Guild Categories</span>
+</a>
+<!-- Active Tab -->
+<a class="text-secondary border-l-4 border-secondary bg-surface-container-high px-4 py-3 flex items-center gap-3 rounded-r-lg shadow-[inset_0_0_10px_rgba(255,198,64,0.1)]" href="#">
+<span class="material-symbols-outlined icon-fill">workspace_premium</span>
+<span class="font-label-md text-label-md font-bold">Hall of Heroes</span>
+</a>
+<a class="text-text-muted hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-surface-container-highest/50 hover:pl-6 duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">person_2</span>
+<span class="font-label-md text-label-md">Adventurer Profile</span>
+</a>
+</nav>
+<!-- CTA & Footer Actions -->
+<div class="px-4 pt-4 mt-auto border-t border-border/50 flex flex-col gap-3">
+<button class="w-full py-3 px-4 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:bg-inverse-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined icon-fill text-sm">add_circle</span>
+                Post Quest
+            </button>
+<div class="flex flex-col space-y-1 mt-2">
+<a class="text-text-muted hover:text-on-surface px-2 py-2 flex items-center gap-3 transition-all hover:pl-4 duration-300 rounded-lg text-sm" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="text-text-muted hover:text-danger px-2 py-2 flex items-center gap-3 transition-all hover:pl-4 duration-300 rounded-lg text-sm" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen md:pl-64 relative overflow-x-hidden">
+<div class="bg-glow"></div>
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full z-10 relative">
+<!-- Page Header -->
+<header class="mb-stack-lg text-center md:text-left flex flex-col md:flex-row md:items-end justify-between border-b border-border/30 pb-4">
+<div>
+<h1 class="font-display-hero text-headline-lg-mobile md:text-display-hero text-on-surface mb-2 drop-shadow-md">Hall of Heroes</h1>
+<p class="font-body-md text-body-md text-text-muted max-w-xl">The most legendary adventurers in the realm, ranked by their valor, completed quests, and accumulated experience.</p>
+</div>
+<div class="mt-4 md:mt-0 flex items-center gap-2 text-text-soft bg-surface/50 px-4 py-2 rounded-full border border-border">
+<span class="material-symbols-outlined text-sm">update</span>
+<span class="font-label-sm text-label-sm">Updated hourly</span>
+</div>
+</header>
+<!-- Top 3 Highlights (Bento Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-stack-lg items-end">
+<!-- Rank 2: Silver Elite -->
+<div class="order-2 md:order-1 bg-card rounded-xl border border-text-muted/30 p-6 flex flex-col items-center text-center relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_0_20px_rgba(203,213,225,0.15)] h-full justify-end pt-12">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-text-soft to-transparent opacity-50"></div>
+<div class="absolute top-4 left-4 flex items-center gap-1 text-text-soft">
+<span class="font-headline-md text-headline-md">#2</span>
+</div>
+<div class="w-20 h-20 rounded-full border-2 border-text-soft p-1 mb-4 relative z-10 bg-background-main">
+<img alt="Silver Elite Hero" class="w-full h-full rounded-full object-cover" data-alt="A highly detailed digital illustration of a skilled rogue or ranger adventurer in a dark fantasy world. They are adorned in sleek, silver-accented leather armor with subtle magical auras. The mood is mysterious and professional, with cool blue and silver lighting contrasting against a dark, stone-textured background. The style is sharp, modern, and cinematic." src="https://lh3.googleusercontent.com/aida/AP1WRLuyJdWWYGdLvpDRu2oAiIO0flvzPMJYha0OkxJ8-cAwJgUIe-TGSswdEZDaTr_wgPMD0NwLcTkIEhbl1MSHHO2q82cML1WWbEtOq-UsChR1z4dM-_b74ilkNT9ukpckPmxGdEw2nSPMYLHfj25z1DGiaiyw16Yv9MVFt-Bb6PSee8VW5C-cPX-Urd0n6-vZVo1X22z5hhJpcoZvXXtw15DH7g-FvXD3NMEWv4G9Bw7S_QrpdC3Q9vSA_xZp"/>
+<div class="absolute -bottom-2 -right-2 bg-background-main rounded-full">
+<span class="material-symbols-outlined text-text-soft text-xl p-0.5 icon-fill">shield</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 group-hover:text-text-soft transition-colors">Lyra Shadowstep</h3>
+<p class="font-label-sm text-label-sm text-text-muted mb-4 uppercase tracking-wider">Silent Blade</p>
+<div class="w-full grid grid-cols-2 gap-2 text-center border-t border-border/50 pt-4">
+<div>
+<p class="font-label-sm text-label-sm text-text-muted">Level</p>
+<p class="font-headline-sm text-headline-sm text-magic-blue">84</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted">Quests</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">412</p>
+</div>
+</div>
+</div>
+<!-- Rank 1: Gold Champion (Center, Larger) -->
+<div class="order-1 md:order-2 bg-surface-container-low rounded-xl border border-warning/50 p-8 flex flex-col items-center text-center relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 shadow-[0_0_30px_rgba(245,158,11,0.15)] z-10 md:-mt-8">
+<div class="absolute inset-0 bg-warning/5 pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-warning to-transparent"></div>
+<div class="absolute top-4 left-1/2 -translate-x-1/2 flex items-center flex-col">
+<span class="material-symbols-outlined text-warning text-3xl icon-fill drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]">workspace_premium</span>
+<span class="font-headline-lg text-headline-lg text-warning mt-1">#1</span>
+</div>
+<div class="w-28 h-28 rounded-full border-4 border-warning shadow-[0_0_20px_rgba(245,158,11,0.4)] p-1 mb-5 relative z-10 bg-background-main mt-16">
+<img alt="Gold Champion Hero" class="w-full h-full rounded-full object-cover" data-alt="A high-quality digital portrait of a legendary adventurer in a dark fantasy setting. They wear ornate, glowing golden armor with intricate rune engravings. The lighting is dramatic, coming from above, highlighting their heroic posture against a deep, shadowed guildhall background. The aesthetic is modern, premium, and highly detailed, fitting a top-tier RPG game character." src="https://lh3.googleusercontent.com/aida/AP1WRLuy1-tkV_FdStJOyqWvS5YjeR4agvj51wAM6U7MxCYEXpPzVED9PXMq3StFXTiJnx0mRw6_akGiLHpKCE_tfUMZjEE0zF9bLJ3LyOoGU0eb7MUrN1oYPccZnmoY0uheZDRWTu8Ps3cDcGVGlvpW38xHeZ7JIZ2-tzHqlc-mxdmC5icJQIY42mZWEmrccYZ5yR5qUjba4-UWhVRIVIU2sIi0XHp3ENwCLrEwEHbauKNZhCVXd1yyl-vHdzqw"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-warning mb-1 drop-shadow-sm">Aric Fireheart</h3>
+<p class="font-label-md text-label-md text-gold-dark mb-5 uppercase tracking-widest font-bold">Grandmaster</p>
+<div class="w-full bg-surface-container-high/50 rounded-lg p-4 grid grid-cols-2 gap-4 border border-warning/20">
+<div>
+<p class="font-label-sm text-label-sm text-text-muted mb-1">Level</p>
+<p class="font-headline-md text-headline-md text-warning drop-shadow-sm">99</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted mb-1">Total EXP</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">1.2M</p>
+</div>
+<div class="col-span-2 border-t border-border/50 pt-2 mt-1">
+<p class="font-label-sm text-label-sm text-text-muted mb-1">Epic Quests</p>
+<p class="font-headline-sm text-headline-sm text-primary">548 Completed</p>
+</div>
+</div>
+</div>
+<!-- Rank 3: Bronze Hero -->
+<div class="order-3 bg-card rounded-xl border border-tertiary/30 p-6 flex flex-col items-center text-center relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 hover:shadow-[0_0_20px_rgba(255,183,132,0.1)] h-full justify-end pt-12">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tertiary to-transparent opacity-50"></div>
+<div class="absolute top-4 right-4 flex items-center gap-1 text-tertiary">
+<span class="font-headline-md text-headline-md">#3</span>
+</div>
+<div class="w-20 h-20 rounded-full border-2 border-tertiary p-1 mb-4 relative z-10 bg-background-main">
+<img alt="Bronze Hero" class="w-full h-full rounded-full object-cover" data-alt="A stunning digital artwork depicting a seasoned battle mage in a dark fantasy environment. They wear rugged, bronze-trimmed robes and hold a faintly glowing staff. The lighting is warm and ambient, casting deep shadows that emphasize a life of difficult quests. The background is a blurred, dark library or armory. The overall look is premium, immersive, and detailed." src="https://lh3.googleusercontent.com/aida/AP1WRLubQya8MGzo7BodNiEZ1AV2Zqghto9n3kK-ZnTmlOz7IV-OzpP9J3xsUp4UnP7__6AKcQvYN9yJkzD00TGJVfs7UsYURH2iicQ0OmGsde2NX-HzHWzehvmbiNzb7vDbJljSOkkihw9keFX5voXwfpcJ2T6pqhWhxpLAB4PSKQUw2JAzMmKLGCPlx8qfiERLYYTx7Q16b107gc7iYyPaVrfuVfFRGoAlpysF2jeCtRAr6bTd5KzD0y84b5o"/>
+<div class="absolute -bottom-2 -left-2 bg-background-main rounded-full">
+<span class="material-symbols-outlined text-tertiary text-xl p-0.5 icon-fill">auto_awesome</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 group-hover:text-tertiary transition-colors">Thorne Ironwood</h3>
+<p class="font-label-sm text-label-sm text-text-muted mb-4 uppercase tracking-wider">Battle Mage</p>
+<div class="w-full grid grid-cols-2 gap-2 text-center border-t border-border/50 pt-4">
+<div>
+<p class="font-label-sm text-label-sm text-text-muted">Level</p>
+<p class="font-headline-sm text-headline-sm text-magic-blue">81</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted">Quests</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">395</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leaderboard Table List -->
+<section class="bg-card rounded-xl border border-border overflow-hidden shadow-lg mb-stack-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/80 border-b border-border">
+<th class="px-6 py-4 font-label-md text-label-md text-text-muted uppercase tracking-wider w-16 text-center">Rank</th>
+<th class="px-6 py-4 font-label-md text-label-md text-text-muted uppercase tracking-wider">Adventurer</th>
+<th class="px-6 py-4 font-label-md text-label-md text-text-muted uppercase tracking-wider text-center">Level</th>
+<th class="px-6 py-4 font-label-md text-label-md text-text-muted uppercase tracking-wider text-right">Completed Quests</th>
+<th class="px-6 py-4 font-label-md text-label-md text-text-muted uppercase tracking-wider text-right">Total EXP</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border/50">
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="px-6 py-4 text-center">
+<span class="font-headline-sm text-headline-sm text-text-muted group-hover:text-on-surface transition-colors">4</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border">
+<img alt="Avatar 4" class="w-full h-full object-cover" data-alt="A portrait of an RPG character, a rugged dwarven warrior with a braided beard, wearing dark iron armor. The style is detailed digital art, dark fantasy aesthetic, professional lighting." src="https://lh3.googleusercontent.com/aida/AP1WRLtpLBC4DzIy7r2YJd1SX3_Vu9RRsU5oF4JbtBI7-C9zk0aXX0jy5AVde4S1VWrDp9CXMFTreTFGcyQcYDGB7JsbzTjtb3bsZgktX9CWqa7K2XeOkIJ46kuH0Bzytl8r8iyM2OQfhJ80a24GQz1sWXxIGnvvdo8qT6GEicf9o0uEcoyUbMGQKF1OuooeK_-wLwiUGsawy9iL4dAe4t7I9GlH2NM7BhT6gLTqxO2fv-H8rRxnF4uLtu7CDZEZ"/>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Kaelen Stoneforge</p>
+<p class="font-label-sm text-label-sm text-text-muted">Iron Vanguard</p>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container border border-border font-label-md text-magic-blue">78</span>
+</td>
+<td class="px-6 py-4 text-right font-body-md text-body-md text-on-surface">342</td>
+<td class="px-6 py-4 text-right">
+<span class="font-label-md text-label-md text-primary">850,200</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="px-6 py-4 text-center">
+<span class="font-headline-sm text-headline-sm text-text-muted group-hover:text-on-surface transition-colors">5</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border">
+<img alt="Avatar 5" class="w-full h-full object-cover" data-alt="A portrait of an RPG character, a sleek elven archer with piercing eyes, wearing dark green and brown leather. The style is detailed digital art, dark fantasy aesthetic, professional lighting." src="https://lh3.googleusercontent.com/aida/AP1WRLsG6UtQKzn0k6AZOM3m9tvCIXYmscrifXb5_CNLXuXHmpxQws-ic1cRDd4wFc42PZCBzzwzE-xm4ylbc15faFCbd-VgiPA2xCi-omQR-Ft-DQyg_RszA_ci0SB-O3suEqbkLiCOLeDebKL5GCzDsiK4R217Pm-EED1ZkutZ7s7SiX70AKDxctNA8ATbt0BMyidgxfp1WuVTHowloHmCS_k1GX6Xhluy_1rEuSWW9mBaoXEITpCvdxVO8tV4"/>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Elora Windrunner</p>
+<p class="font-label-sm text-label-sm text-text-muted">Seeker</p>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container border border-border font-label-md text-magic-blue">75</span>
+</td>
+<td class="px-6 py-4 text-right font-body-md text-body-md text-on-surface">315</td>
+<td class="px-6 py-4 text-right">
+<span class="font-label-md text-label-md text-primary">812,450</span>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="px-6 py-4 text-center">
+<span class="font-headline-sm text-headline-sm text-text-muted group-hover:text-on-surface transition-colors">6</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border">
+<div class="w-full h-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-text-muted">person</span>
+</div>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Vorn the Undying</p>
+<p class="font-label-sm text-label-sm text-text-muted">Necromancer</p>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container border border-border font-label-md text-magic-blue">73</span>
+</td>
+<td class="px-6 py-4 text-right font-body-md text-body-md text-on-surface">298</td>
+<td class="px-6 py-4 text-right">
+<span class="font-label-md text-label-md text-primary">790,100</span>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="px-6 py-4 text-center">
+<span class="font-headline-sm text-headline-sm text-text-muted group-hover:text-on-surface transition-colors">7</span>
+</td>
+<td class="px-6 py-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border">
+<img alt="Avatar 7" class="w-full h-full object-cover" data-alt="A portrait of an RPG character, a grizzled human cleric with a scarred face, wearing heavy steel and white cloth armor. The style is detailed digital art, dark fantasy aesthetic, professional lighting." src="https://lh3.googleusercontent.com/aida/AP1WRLsT584GZAQNqchLsqjkJxEaxf1ubDdDm897yprg5UTUSA5UIHbHfSJ29PgPRDun4num0KbR_eTxsJ-oy5QIjp6zbxAbzP-DfPDZfrQeWTnMzgTVrKWvC3la3lqZHqGhp4x1Cp5Kq2EgTJRX5Xe3ri058lovHPqNrw9FRYfcwLl618X-2XwdTrN9mFWUanDsvE0xpGbNThzPr38KUj0c3s9dNsKmiaKNaARofxamrJdC_FFUBNDYiC8hcJ6M"/>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Brother Silas</p>
+<p class="font-label-sm text-label-sm text-text-muted">Lightbringer</p>
+</div>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container border border-border font-label-md text-magic-blue">70</span>
+</td>
+<td class="px-6 py-4 text-right font-body-md text-body-md text-on-surface">275</td>
+<td class="px-6 py-4 text-right">
+<span class="font-label-md text-label-md text-primary">750,000</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / View All -->
+<div class="bg-surface-container-low border-t border-border px-6 py-4 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted">Showing Top 7 of 1,240 Adventurers</span>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors flex items-center gap-1">
+                        View Full Roster
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto border-t border-border/30 bg-background-main dark:bg-background-main flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-4 z-10 relative">
+<div class="font-headline-sm text-text-muted">
+<span class="material-symbols-outlined icon-fill align-middle mr-1 text-lg">fort</span>
+                QuestBoard
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-text-muted hover:text-text-main hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-text-muted hover:text-text-main hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Guild Code</a>
+<a class="font-label-sm text-label-sm text-text-muted hover:text-text-main hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Support</a>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted dark:text-text-muted text-center md:text-right">
+                © 1224 QuestBoard Adventurer's Guild. All rights reserved.
+            </p>
+</footer>
+</main>
+</body></html>
